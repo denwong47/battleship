@@ -1,0 +1,28 @@
+[package]
+name = "battleship"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = ["simulate_failures"]
+debug = []
+jsonl_logging = []
+simulate_failures = []
+
+[dependencies]
+async-ctrlc = "1.2.0"
+async-trait = "0.1.72"
+clap = { version = "4", features = ["derive"] }
+http-types = "2.12.0"
+lazy_static = "1.4.0"
+ndarray = { version = "0.15.6", features = ["serde"] }
+rand = { version = "0.8.5", features = ["serde"] }
+serde = "1.0.174"
+serde_json = "1.0.103"
+thiserror = "1.0.44"
+tide = "0.16.0"
+time = { version = "0.3.23", features = ["serde", "formatting", "macros"] }
+tokio = { version = "1.29.1", features = ["sync", "rt", "rt-multi-thread", "macros", "time"] }
+uuid = { version = "1.4.1", features = ["serde", "v4"] }
