@@ -2,6 +2,9 @@
 mod board_status;
 pub use board_status::BoardStatusHook;
 
+mod drop_board;
+pub use drop_board::DropBoardHook;
+
 mod list_boards;
 pub use list_boards::ListBoardsHook;
 

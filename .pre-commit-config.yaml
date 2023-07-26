@@ -44,3 +44,10 @@ repos:
         name: cargo-clippy
         entry: bash -c 'cargo clippy -- -D warnings'
         language: system
+        fail_fast: true
+-   repo: local
+    hooks:
+      - id: cargo-test
+        name: cargo-test
+        entry: bash -c 'cargo test'
+        language: system

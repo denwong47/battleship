@@ -1,7 +1,10 @@
 //! Stores the state of the app.
 use std::{
     collections::HashMap,
-    sync::{Arc, RwLock},
+    sync::{
+        atomic::{AtomicU64, Ordering},
+        Arc, RwLock,
+    },
 };
 
 use time::OffsetDateTime;
@@ -9,6 +12,7 @@ use uuid::Uuid;
 
 use crate::{
     error::AppError,
+    logger,
     models::{Board, BoardStatus},
 };
 
@@ -17,10 +21,15 @@ use super::tasks::termination::TerminationToken;
 #[cfg(feature = "debug")]
 use crate::logger;
 
+use super::PageVisit;
+
 pub struct AppState {
     start_time: OffsetDateTime,
     termination_token: Arc<TerminationToken>,
     boards: HashMap<Uuid, RwLock<Board>>,
+    page_visits: HashMap<String, AtomicU64>,
+    #[cfg(feature = "debug")]
+    visit_log: Vec<PageVisit>,
 }
 
 impl Default for AppState {
@@ -30,6 +39,9 @@ impl Default for AppState {
             start_time: OffsetDateTime::now_utc(),
             termination_token: Arc::new(TerminationToken::default()),
             boards: HashMap::new(),
+            page_visits: HashMap::new(),
+            #[cfg(feature = "debug")]
+            visit_log: Vec::new(),
         }
     }
 }
@@ -82,6 +94,17 @@ impl AppState {
         })
     }
 
+    /// Drop a board by [`Uuid`].
+    pub fn drop_board(&mut self, uuid: Uuid) -> Result<Board, AppError> {
+        self.boards
+            .remove(&uuid)
+            .ok_or(AppError::MissingBoard { uuid })
+            .and_then(|lock| {
+                lock.into_inner()
+                    .map_err(|_| AppError::LockPoisoned("Board"))
+            })
+    }
+
     /// Get a board by [`Uuid`].
     pub fn get_board(&self, uuid: Uuid) -> Result<&RwLock<Board>, AppError> {
         self.boards
@@ -115,5 +138,37 @@ impl AppState {
     /// List all the games.
     pub fn list_board_statuses(&self) -> Result<Vec<BoardStatus>, AppError> {
         Result::from_iter(self.boards.keys().map(|uuid| self.get_board_status(*uuid)))
+    }
+
+    /// Log visit.
+    pub fn log_visit(&mut self, visit: PageVisit) {
+        logger::debug(&format!(
+            "Page Visit to {path} from {client} resulted in {code:03} {description}.",
+            path = visit.path,
+            client = visit
+                .client
+                .clone()
+                .unwrap_or("<Unknown client>".to_owned()),
+            code = visit
+                .status_code
+                .map(|status_code| status_code as u16)
+                .unwrap_or(0),
+            description = visit
+                .status_code
+                .as_ref()
+                .map(tide::StatusCode::canonical_reason)
+                .unwrap_or("(None)"),
+        ));
+
+        if !self.page_visits.contains_key(&visit.path) {
+            self.page_visits.insert(visit.path.to_owned(), 1.into());
+        } else {
+            self.page_visits
+                .get_mut(&visit.path)
+                .map(|counter| counter.fetch_add(1, Ordering::Relaxed));
+        }
+
+        #[cfg(feature = "debug")]
+        self.visit_log.push(visit)
     }
 }

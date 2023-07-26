@@ -3,7 +3,11 @@ use std::sync::{Arc, RwLock};
 use async_trait::async_trait;
 use tide::{self, Endpoint};
 
-use crate::{app::AppState, error::AppError, models::traits::ResponseBuilder};
+use crate::{
+    app::AppState,
+    error::AppError,
+    models::traits::{IsAppHook, ResponseBuilder},
+};
 
 /// [`Endpoint`] for creating a new board.
 #[allow(dead_code)]
@@ -11,9 +15,9 @@ pub struct ListBoardsHook {
     locked_state: Arc<RwLock<AppState>>,
 }
 
-impl ListBoardsHook {
+impl IsAppHook for ListBoardsHook {
     /// Create a new [`ListBoardsHook`] from a [`AppState`].
-    pub fn new(locked_state: Arc<RwLock<AppState>>) -> Self {
+    fn new(locked_state: Arc<RwLock<AppState>>) -> Self {
         Self { locked_state }
     }
 }

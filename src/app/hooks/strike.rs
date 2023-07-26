@@ -9,7 +9,7 @@ use crate::{
     app::AppState,
     error::AppError,
     models::{
-        traits::{QueryParams, ResponseBuilder},
+        traits::{IsAppHook, QueryParams, ResponseBuilder},
         Coordinates, Strike,
     },
 };
@@ -23,15 +23,14 @@ pub struct StrikeHook {
 /// Parameters for the above [`Endpoint`].
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct StrikeParams {
-    pub uuid: Option<Uuid>,
     pub x: Option<usize>,
     pub y: Option<usize>,
 }
 impl<State> QueryParams<State> for StrikeParams {}
 
-impl StrikeHook {
+impl IsAppHook for StrikeHook {
     /// Create a new [`StrikeHook`] from a [`AppState`].
-    pub fn new(locked_state: Arc<RwLock<AppState>>) -> Self {
+    fn new(locked_state: Arc<RwLock<AppState>>) -> Self {
         Self { locked_state }
     }
 }
@@ -42,9 +41,18 @@ where
     State: Clone + Send + Sync + 'static,
 {
     async fn call(&self, req: tide::Request<State>) -> tide::Result {
-        Ok(StrikeParams::parse_req(&req)
-            .and_then(|params| match (params.uuid, params.x, params.y) {
-                (Some(uuid), Some(x), Some(y)) => self
+        Ok({
+            let uuid = req
+                .param("uuid")
+                .map_err(|_| AppError::MissingParameters(vec!["uuid"]))
+                .and_then(|uuid_str| {
+                    Uuid::parse_str(uuid_str).map_err(|_| AppError::InvalidBoard {
+                        uuid_str: uuid_str.to_owned(),
+                    })
+                })?;
+
+            StrikeParams::parse_req(&req).and_then(|params| match (params.x, params.y) {
+                (Some(x), Some(y)) => self
                     .locked_state
                     .read()
                     .map_err(|_| AppError::LockPoisoned("AppState"))
@@ -57,6 +65,7 @@ where
                     }),
                 _ => Err(AppError::MissingParameters(vec!["uuid", "x", "y"])),
             })
-            .build_response())
+        }
+        .build_response())
     }
 }

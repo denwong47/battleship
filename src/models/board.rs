@@ -1,4 +1,5 @@
 use ndarray::{s, Array2, Ix2, SliceInfo, SliceInfoElem};
+use serde::{Deserialize, Serialize};
 use std::{
     ops::Deref,
     sync::{
@@ -22,6 +23,7 @@ use std::fmt::Display;
 #[cfg(feature = "debug")]
 use crate::logger;
 
+#[derive(Serialize, Deserialize)]
 pub struct Board {
     uuid: Uuid,
     start_time: OffsetDateTime,

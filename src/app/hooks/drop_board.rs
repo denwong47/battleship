@@ -12,19 +12,19 @@ use crate::{
 
 /// [`Endpoint`] for creating a new board.
 #[allow(dead_code)]
-pub struct BoardStatusHook {
+pub struct DropBoardHook {
     locked_state: Arc<RwLock<AppState>>,
 }
 
-impl IsAppHook for BoardStatusHook {
-    /// Create a new [`BoardStatusHook`] from a [`AppState`].
+impl IsAppHook for DropBoardHook {
+    /// Create a new [`DropBoardHook`] from a [`AppState`].
     fn new(locked_state: Arc<RwLock<AppState>>) -> Self {
         Self { locked_state }
     }
 }
 
 #[async_trait]
-impl<State> Endpoint<State> for BoardStatusHook
+impl<State> Endpoint<State> for DropBoardHook
 where
     State: Clone + Send + Sync + 'static,
 {
@@ -41,7 +41,7 @@ where
                         self.locked_state
                             .write()
                             .map_err(|_| AppError::LockPoisoned("AppState"))
-                            .and_then(|app_state| app_state.get_board_status(uuid))
+                            .and_then(|mut app_state| app_state.drop_board(uuid))
                     })
             })
             .build_response())

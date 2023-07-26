@@ -21,6 +21,9 @@ pub enum AppError {
         err: serde_json::Error,
     },
 
+    #[error("This feature is only enabled for debug build.")]
+    DebugOnlyFeature,
+
     #[error("App at {addr} failed to start up: {err}")]
     ServerStartUpError { addr: String, err: io::Error },
 
@@ -44,6 +47,9 @@ pub enum AppError {
 
     #[error("Board {uuid} is missing.")]
     MissingBoard { uuid: Uuid },
+
+    #[error("{uuid_str} is not a valid Board UUID.")]
+    InvalidBoard { uuid_str: String },
 
     #[error("Board {uuid} is frozen - the game has ended.")]
     FrozenBoard { uuid: Uuid },
@@ -114,12 +120,14 @@ expand_variants!(
     // (ConfigNotReadable, tide::StatusCode::InternalServerError),
     // (ConfigNotParsable, tide::StatusCode::InternalServerError),
     // (ServerStartUpError, tide::StatusCode::InternalServerError),
+    (DebugOnlyFeature, tide::StatusCode::NotAcceptable),
     (InvalidParameters, tide::StatusCode::BadRequest),
     (MissingParameters, tide::StatusCode::NotFound),
     (CtrlCError, tide::StatusCode::Gone),
     // (JSONSerializationError, tide::StatusCode::InternalServerError),
     // (DuplicatedBoard, tide::StatusCode::InternalServerError),
     (FrozenBoard, tide::StatusCode::NotAcceptable),
+    (InvalidBoard, tide::StatusCode::BadRequest),
     (MissingBoard, tide::StatusCode::NotFound),
     (RemoteRequestedTermination, tide::StatusCode::Gone),
     (PositionOccupied, tide::StatusCode::NotAcceptable),

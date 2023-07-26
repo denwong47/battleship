@@ -8,7 +8,7 @@ use crate::{
     app::AppState,
     config,
     error::AppError,
-    models::traits::{QueryParams, ResponseBuilder},
+    models::traits::{IsAppHook, QueryParams, ResponseBuilder},
 };
 
 /// [`Endpoint`] for creating a new board.
@@ -25,9 +25,9 @@ pub struct NewBoardParams {
 }
 impl<State> QueryParams<State> for NewBoardParams {}
 
-impl NewBoardHook {
-    /// Create a new [`NewBoardHook`] from a [`NewBoardHook`]
-    pub fn new(locked_state: Arc<RwLock<AppState>>) -> Self {
+impl IsAppHook for NewBoardHook {
+    /// Create a new [`NewBoardHook`] from a [`AppState`] behind a [`RwLock`].
+    fn new(locked_state: Arc<RwLock<AppState>>) -> Self {
         Self { locked_state }
     }
 }
