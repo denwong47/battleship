@@ -2,9 +2,10 @@ use std::sync::{Arc, RwLock};
 
 use tide::Server;
 
-use crate::app::{hooks, AppState};
-
-use crate::logger;
+use crate::{
+    app::{hooks, AppHook, AppState},
+    logger,
+};
 
 /// Create the app an populate it with the routes we need.
 pub async fn create_app(app_state: AppState) -> Server<()> {
@@ -22,7 +23,7 @@ pub async fn create_app(app_state: AppState) -> Server<()> {
         ) => {
             $(
                 app.at($path)
-                    .get(hooks::$hook::new(Arc::clone(&locked_state)));
+                    .get(AppHook::<hooks::$hook>::new(Arc::clone(&locked_state)));
             )*
         };
     }
@@ -30,9 +31,10 @@ pub async fn create_app(app_state: AppState) -> Server<()> {
     expand_paths!(
         ("/terminate", TerminationHook),
         ("/new", NewBoardHook),
+        ("/drop/:uuid", DropBoardHook),
         ("/list", ListBoardsHook),
-        ("/status", BoardStatusHook),
-        ("/strike", StrikeHook),
+        ("/status/:uuid", BoardStatusHook),
+        ("/strike/:uuid", StrikeHook),
     );
 
     logger::debug("`tide::Server` created...");

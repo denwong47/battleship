@@ -6,16 +6,16 @@ use serde::Deserialize;
 use tide::{prelude::*, Endpoint};
 
 use super::super::app_state::AppState;
-use crate::{error::AppError, logger};
+use crate::{error::AppError, logger, models::traits::IsAppHook};
 
 pub struct TerminationHook {
     locked_state: Arc<RwLock<AppState>>,
 }
 
-impl TerminationHook {
+impl IsAppHook for TerminationHook {
     /// Create a new [`TerminationHook`] from a [`TerminationToken`] behind an [`Arc`]
     /// reference.
-    pub fn new(state: Arc<RwLock<AppState>>) -> Self {
+    fn new(state: Arc<RwLock<AppState>>) -> Self {
         Self {
             locked_state: state,
         }
