@@ -7,7 +7,8 @@ use uuid::Uuid;
 
 use crate::{
     app::AppState,
-    models::traits::{QueryParams, ResponseBuilder}, error::AppError,
+    error::AppError,
+    models::traits::{QueryParams, ResponseBuilder},
 };
 
 /// [`Endpoint`] for creating a new board.
@@ -36,29 +37,17 @@ where
     State: Clone + Send + Sync + 'static,
 {
     async fn call(&self, req: tide::Request<State>) -> tide::Result {
-        Ok(
-            BoardStatusParams::parse_req(&req)
-            .and_then(
-                |params| {
-                    if let Some(uuid) = params.uuid {
-                        self.locked_state
+        Ok(BoardStatusParams::parse_req(&req)
+            .and_then(|params| {
+                if let Some(uuid) = params.uuid {
+                    self.locked_state
                         .read()
-                        .map_err(
-                            |_| AppError::LockPoisoned("AppState")
-                        )
-                        .and_then(
-                            |app_state|
-                                app_state
-                                .get_board_status(uuid)
-                        )
-                    } else {
-                        Err(
-                            AppError::MissingParameters(vec!["uuid"])
-                        )
-                    }
+                        .map_err(|_| AppError::LockPoisoned("AppState"))
+                        .and_then(|app_state| app_state.get_board_status(uuid))
+                } else {
+                    Err(AppError::MissingParameters(vec!["uuid"]))
                 }
-            )
-            .build_response()
-        )
+            })
+            .build_response())
     }
 }

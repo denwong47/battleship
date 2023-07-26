@@ -3,11 +3,7 @@ use std::sync::{Arc, RwLock};
 use async_trait::async_trait;
 use tide::{self, Endpoint};
 
-use crate::{
-    app::AppState,
-    error::AppError,
-    models::traits::ResponseBuilder,
-};
+use crate::{app::AppState, error::AppError, models::traits::ResponseBuilder};
 
 /// [`Endpoint`] for creating a new board.
 #[allow(dead_code)]
@@ -28,18 +24,11 @@ where
     State: Clone + Send + Sync + 'static,
 {
     async fn call(&self, _req: tide::Request<State>) -> tide::Result {
-        Ok(
-            self.locked_state
+        Ok(self
+            .locked_state
             .read()
-            .map_err(
-                |_| AppError::LockPoisoned("AppState")
-            )
-            .and_then(
-                |app_state|
-                    app_state
-                    .list_board_statuses()
-            )
-            .build_response()
-        )
+            .map_err(|_| AppError::LockPoisoned("AppState"))
+            .and_then(|app_state| app_state.list_board_statuses())
+            .build_response())
     }
 }

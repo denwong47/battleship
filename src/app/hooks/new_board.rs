@@ -7,7 +7,8 @@ use tide::{self, Endpoint};
 use crate::{
     app::AppState,
     config,
-    models::traits::{QueryParams, ResponseBuilder}, error::AppError,
+    error::AppError,
+    models::traits::{QueryParams, ResponseBuilder},
 };
 
 /// [`Endpoint`] for creating a new board.
@@ -37,33 +38,23 @@ where
     State: Clone + Send + Sync + 'static,
 {
     async fn call(&self, req: tide::Request<State>) -> tide::Result {
-        Ok(
-            NewBoardParams::parse_req(&req)
-            .and_then(
-                |params| {
-                    let size = params.size.unwrap_or(config::DEFAULT_BOARD_SIZE);
-                    let ship_count = params.ship_count.unwrap_or(config::DEFAULT_SHIP_COUNT);
-                    
-                    self.locked_state
+        Ok(NewBoardParams::parse_req(&req)
+            .and_then(|params| {
+                let size = params.size.unwrap_or(config::DEFAULT_BOARD_SIZE);
+                let ship_count = params.ship_count.unwrap_or(config::DEFAULT_SHIP_COUNT);
+
+                self.locked_state
                     .write()
-                    .map_err(
-                        |_| AppError::LockPoisoned("AppState")
-                    )
-                    .and_then(
-                        |mut app_state| {
-                            app_state.new_board(size, ship_count)
-                        }
-                    )
-                    .map(
-                        |uuid| serde_json::json!({
+                    .map_err(|_| AppError::LockPoisoned("AppState"))
+                    .and_then(|mut app_state| app_state.new_board(size, ship_count))
+                    .map(|uuid| {
+                        serde_json::json!({
                             "action": "createGame",
                             "success": true,
                             "game": uuid,
                         })
-                    )
-                }
-            )
-            .build_response()
-        )
+                    })
+            })
+            .build_response())
     }
 }

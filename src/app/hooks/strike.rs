@@ -9,9 +9,8 @@ use crate::{
     app::AppState,
     error::AppError,
     models::{
-        Coordinates,
-        Strike,
         traits::{QueryParams, ResponseBuilder},
+        Coordinates, Strike,
     },
 };
 
@@ -43,37 +42,21 @@ where
     State: Clone + Send + Sync + 'static,
 {
     async fn call(&self, req: tide::Request<State>) -> tide::Result {
-        Ok(
-            StrikeParams::parse_req(&req)
-            .and_then(
-                |params| {
-                    match (params.uuid, params.x, params.y) {
-                        (Some(uuid), Some(x), Some(y)) => {
-                            self.locked_state
-                            .read()
-                            .map_err(
-                                |_| AppError::LockPoisoned("AppState")
-                            )
-                            .and_then(
-                                |app_state|
-                                    app_state
-                                    .get_board(uuid)?
-                                    .write()
-                                    .map_err(|_| AppError::LockPoisoned("Board"))?
-                                    .add_strike(
-                                        Strike::new(
-                                            Coordinates::new(x, y)
-                                        )
-                                    )
-                            )
-                        },
-                        _ => Err(
-                            AppError::MissingParameters(vec!["uuid", "x", "y"])
-                        )
-                    }
-                }
-            )
-            .build_response()
-        )
+        Ok(StrikeParams::parse_req(&req)
+            .and_then(|params| match (params.uuid, params.x, params.y) {
+                (Some(uuid), Some(x), Some(y)) => self
+                    .locked_state
+                    .read()
+                    .map_err(|_| AppError::LockPoisoned("AppState"))
+                    .and_then(|app_state| {
+                        app_state
+                            .get_board(uuid)?
+                            .write()
+                            .map_err(|_| AppError::LockPoisoned("Board"))?
+                            .add_strike(Strike::new(Coordinates::new(x, y)))
+                    }),
+                _ => Err(AppError::MissingParameters(vec!["uuid", "x", "y"])),
+            })
+            .build_response())
     }
 }

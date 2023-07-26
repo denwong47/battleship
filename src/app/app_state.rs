@@ -7,11 +7,14 @@ use std::{
 use time::OffsetDateTime;
 use uuid::Uuid;
 
-use crate::{error::AppError, models::{Board, BoardStatus}};
+use crate::{
+    error::AppError,
+    models::{Board, BoardStatus},
+};
 
 use super::tasks::termination::TerminationToken;
 
-#[cfg(feature="debug")]
+#[cfg(feature = "debug")]
 use crate::logger;
 
 pub struct AppState {
@@ -59,73 +62,58 @@ impl AppState {
     }
 
     /// Create a new [`Board`] and insert it into this app.
-    pub fn new_board(&mut self, size: [usize; 2], ship_count: u16) -> Result<BoardStatus, AppError> {
+    pub fn new_board(
+        &mut self,
+        size: [usize; 2],
+        ship_count: u16,
+    ) -> Result<BoardStatus, AppError> {
         let result = self.add_board(Board::new(size, ship_count));
 
-        result
-        .and_then(
-            |uuid| {
-                self.boards
+        result.and_then(|uuid| {
+            self.boards
                 .get(&uuid)
-                .ok_or_else(
-                    || AppError::MissingBoard { uuid: uuid }
-                )
-                .and_then(
-                    |board|
-                        board
+                .ok_or(AppError::MissingBoard { uuid })
+                .and_then(|board| {
+                    board
                         .read()
-                        .map_err(
-                            |_| AppError::LockPoisoned("Board")
-                        )?
+                        .map_err(|_| AppError::LockPoisoned("Board"))?
                         .status()
-                )
-            }
-        )
+                })
+        })
     }
 
     /// Get a board by [`Uuid`].
-    pub fn get_board<'s>(&'s self, uuid: Uuid) -> Result<&'s RwLock<Board>, AppError> {
+    pub fn get_board(&self, uuid: Uuid) -> Result<&RwLock<Board>, AppError> {
         self.boards
-        .get(&uuid)
-        .ok_or_else(
-            || AppError::MissingBoard { uuid }
-        )
+            .get(&uuid)
+            .ok_or(AppError::MissingBoard { uuid })
     }
 
     /// Get a [`BoardStatus`] by [`Uuid`].
     pub fn get_board_status(&self, uuid: Uuid) -> Result<BoardStatus, AppError> {
-        self
-        .get_board(uuid)
-        .and_then(
-            |lock|
-                lock
-                .read()
-                .map_err(
-                    |_| AppError::LockPoisoned("Board")
-                )
-                .and_then(
-                    |board| {
-                        let status = board.status();
-                        
-                        #[cfg(feature="debug")]
-                        {
-                            let uuid = board.uuid();
-                            logger::debug(&format!("Current board state for {uuid}:\n\u{1b}[39m{board}"));
-                        }
+        self.get_board(uuid).and_then(|lock| {
+            lock.read()
+                .map_err(|_| AppError::LockPoisoned("Board"))
+                .and_then(|board| {
+                    let status = board.status();
 
-                        status
+                    #[cfg(feature = "debug")]
+                    {
+                        let uuid = board.uuid();
+                        logger::debug(&format!(
+                            "Current board state for {uuid}:\n\u{1b}[39m{board}"
+                        ));
                     }
-                )
-        )
+
+                    // Override to accommodate "debug"
+                    #[allow(clippy::let_and_return)]
+                    status
+                })
+        })
     }
 
     /// List all the games.
     pub fn list_board_statuses(&self) -> Result<Vec<BoardStatus>, AppError> {
-        Result::from_iter(
-            self
-            .boards
-            .keys()
-            .map(|uuid| self.get_board_status(*uuid))
-        )
+        Result::from_iter(self.boards.keys().map(|uuid| self.get_board_status(*uuid)))
     }
 }

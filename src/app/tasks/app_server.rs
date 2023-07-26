@@ -26,7 +26,7 @@ pub async fn create_app(app_state: AppState) -> Server<()> {
             )*
         };
     }
-    
+
     expand_paths!(
         ("/terminate", TerminationHook),
         ("/new", NewBoardHook),

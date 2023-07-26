@@ -7,11 +7,17 @@ use crate::{
     error::AppError,
 };
 
+#[cfg(feature = "debug")]
+use crate::logger;
+
 /// Starts the host app.
 pub async fn run_app(config: HostConfiguration) -> Result<(), AppError> {
     let addr = config.addr.unwrap_or(config::DEFAULT_ADDR.to_owned());
     let port = config.port.unwrap_or(config::DEFAULT_PORT);
     let listen_target = format!("{addr}:{port}");
+
+    #[cfg(feature="debug")]
+    logger::warning("This is a DEBUG build: extra information will be printed and/or returned, including game states that are private!");
 
     #[allow(unused_variables)]
     let app_state = AppState::new();

@@ -16,7 +16,9 @@ impl TerminationHook {
     /// Create a new [`TerminationHook`] from a [`TerminationToken`] behind an [`Arc`]
     /// reference.
     pub fn new(state: Arc<RwLock<AppState>>) -> Self {
-        Self { locked_state: state }
+        Self {
+            locked_state: state,
+        }
     }
 }
 
@@ -65,18 +67,15 @@ where
 
                     self.locked_state
                         .read()
-                        .map_err(
-                            |_| AppError::LockPoisoned("AppState")
-                        )?
+                        .map_err(|_| AppError::LockPoisoned("AppState"))?
                         .token()
                         .notify(Err(AppError::CtrlCError { message: error }));
                 } else {
                     self.locked_state
-                    .read()
-                    .map_err(
-                        |_| AppError::LockPoisoned("AppState")
-                    )?
-                    .token().notify(Ok(()));
+                        .read()
+                        .map_err(|_| AppError::LockPoisoned("AppState"))?
+                        .token()
+                        .notify(Ok(()));
                 }
 
                 response
