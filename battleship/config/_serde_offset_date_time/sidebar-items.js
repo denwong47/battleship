@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["description","deserialize","serialize"],"mod":["option"],"struct":["OptionVisitor","Visitor"]};

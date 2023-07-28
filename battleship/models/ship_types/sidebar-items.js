@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ShipType"],"macro":["expand_types"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["CHAR_EMPTY","CHAR_MISSED","CHAR_SHIP_HIT","CHAR_SHIP_UNHIT"],"enum":["Position"]};

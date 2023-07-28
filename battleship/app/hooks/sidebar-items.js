@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["board_status","drop_board","list_boards","new_board","strike","termination"],"struct":["BoardStatusHook","DropBoardHook","ListBoardsHook","NewBoardHook","StrikeHook","TerminationHook"]};
