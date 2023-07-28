@@ -26,7 +26,7 @@ impl StrikeReport {
         }
     }
 
-    /// Try create a [`StrikeReport`] from a [`Position`].
+    /// Try create a [`StrikeReport`] from a [`Coordinates`].
     pub fn try_from_position(value: &Position, repeated: bool) -> Result<Self, AppError> {
         let missed_factory =
             |strike: &Strike| Self::new(strike.uuid(), strike.coordinates.clone(), false, None);

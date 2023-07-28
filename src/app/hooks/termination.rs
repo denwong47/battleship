@@ -13,8 +13,7 @@ pub struct TerminationHook {
 }
 
 impl IsAppHook for TerminationHook {
-    /// Create a new [`TerminationHook`] from a [`TerminationToken`] behind an [`Arc`]
-    /// reference.
+    /// Create a new [`TerminationHook`] from a [`AppState`] behind an [`RwLock`].
     fn new(state: Arc<RwLock<AppState>>) -> Self {
         Self {
             locked_state: state,

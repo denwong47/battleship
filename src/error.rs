@@ -81,7 +81,7 @@ macro_rules! expand_variants {
         impl AppError {
             /// Get the HTTP Status code for this error.
             ///
-            /// Full list here: https://docs.rs/tide/latest/tide/enum.StatusCode.html
+            /// Full list here: `<https://docs.rs/tide/latest/tide/enum.StatusCode.html>`
             pub fn error_code(&self) -> tide::StatusCode {
                 match self.name().as_str() {
                     $(

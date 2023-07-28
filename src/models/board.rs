@@ -215,7 +215,7 @@ impl Board {
 
     /// Takes ownership of a [`Strike`], then perform the strike onto the board.
     ///
-    /// Repeated strikes will be logged, but the state of the [`Position`] won't change.
+    /// Repeated strikes will be logged, but the state of the [`Coordinates`] won't change.
     pub fn add_strike(&mut self, strike: Strike) -> Result<StrikeReport, AppError> {
         self.err_if_frozen()?;
 
