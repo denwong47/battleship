@@ -10,22 +10,22 @@ pub struct Coordinates {
 }
 
 impl Coordinates {
-    /// Create a new [`Position`].
+    /// Create a new [`Coordinates`].
     pub fn new(x: usize, y: usize) -> Self {
         Self { x, y }
     }
 
-    /// Create a new [`Position`] by shifting rightwards.
+    /// Create a new [`Coordinates`] by shifting rightwards.
     pub fn shift_right(&self, amount: i64) -> Self {
         Self::new((self.x as i64 + amount) as usize, self.y)
     }
 
-    /// Create a new [`Position`] by shifting downwards.
+    /// Create a new [`Coordinates`] by shifting downwards.
     pub fn shift_down(&self, amount: i64) -> Self {
         Self::new(self.x, (self.y as i64 + amount) as usize)
     }
 
-    /// Create a new [`Position`] by shifting.
+    /// Create a new [`Coordinates`] by shifting.
     pub fn shift(&self, orientation: &Orientation, amount: i64) -> Self {
         match orientation {
             Orientation::Right => self.shift_right(amount),
