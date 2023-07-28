@@ -45,22 +45,22 @@
 }
 
 <span class="kw">impl </span>Coordinates {
-    <span class="doccomment">/// Create a new [`Position`].
+    <span class="doccomment">/// Create a new [`Coordinates`].
     </span><span class="kw">pub fn </span>new(x: usize, y: usize) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{ x, y }
     }
 
-    <span class="doccomment">/// Create a new [`Position`] by shifting rightwards.
+    <span class="doccomment">/// Create a new [`Coordinates`] by shifting rightwards.
     </span><span class="kw">pub fn </span>shift_right(<span class="kw-2">&amp;</span><span class="self">self</span>, amount: i64) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::new((<span class="self">self</span>.x <span class="kw">as </span>i64 + amount) <span class="kw">as </span>usize, <span class="self">self</span>.y)
     }
 
-    <span class="doccomment">/// Create a new [`Position`] by shifting downwards.
+    <span class="doccomment">/// Create a new [`Coordinates`] by shifting downwards.
     </span><span class="kw">pub fn </span>shift_down(<span class="kw-2">&amp;</span><span class="self">self</span>, amount: i64) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::new(<span class="self">self</span>.x, (<span class="self">self</span>.y <span class="kw">as </span>i64 + amount) <span class="kw">as </span>usize)
     }
 
-    <span class="doccomment">/// Create a new [`Position`] by shifting.
+    <span class="doccomment">/// Create a new [`Coordinates`] by shifting.
     </span><span class="kw">pub fn </span>shift(<span class="kw-2">&amp;</span><span class="self">self</span>, orientation: <span class="kw-2">&amp;</span>Orientation, amount: i64) -&gt; <span class="self">Self </span>{
         <span class="kw">match </span>orientation {
             Orientation::Right =&gt; <span class="self">self</span>.shift_right(amount),

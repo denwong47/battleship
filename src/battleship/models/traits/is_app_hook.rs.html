@@ -11,7 +11,7 @@
 <span class="kw">use </span><span class="kw">crate</span>::app::AppState;
 
 <span class="kw">pub trait </span>IsAppHook {
-    <span class="doccomment">/// Create a new [`NewBoardHook`] from a [`AppState`] behind a [`RwLock`].
+    <span class="doccomment">/// Create a new instance from a [`AppState`] behind a [`RwLock`].
     </span><span class="kw">fn </span>new(locked_state: Arc&lt;RwLock&lt;AppState&gt;&gt;) -&gt; <span class="self">Self</span>;
 }
 </code></pre></div></section></main></body></html>

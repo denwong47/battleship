@@ -94,7 +94,6 @@
 <a href="#94" id="94">94</a>
 <a href="#95" id="95">95</a>
 <a href="#96" id="96">96</a>
-<a href="#97" id="97">97</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>std::sync::{Arc, RwLock};
 
 <span class="kw">use </span>async_trait::async_trait;
@@ -110,8 +109,7 @@
 }
 
 <span class="kw">impl </span>IsAppHook <span class="kw">for </span>TerminationHook {
-    <span class="doccomment">/// Create a new [`TerminationHook`] from a [`TerminationToken`] behind an [`Arc`]
-    /// reference.
+    <span class="doccomment">/// Create a new [`TerminationHook`] from a [`AppState`] behind an [`RwLock`].
     </span><span class="kw">fn </span>new(state: Arc&lt;RwLock&lt;AppState&gt;&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             locked_state: state,

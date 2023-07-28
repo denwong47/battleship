@@ -74,7 +74,7 @@
         }
     }
 
-    <span class="doccomment">/// Try create a [`StrikeReport`] from a [`Position`].
+    <span class="doccomment">/// Try create a [`StrikeReport`] from a [`Coordinates`].
     </span><span class="kw">pub fn </span>try_from_position(value: <span class="kw-2">&amp;</span>Position, repeated: bool) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, AppError&gt; {
         <span class="kw">let </span>missed_factory =
             |strike: <span class="kw-2">&amp;</span>Strike| <span class="self">Self</span>::new(strike.uuid(), strike.coordinates.clone(), <span class="bool-val">false</span>, <span class="prelude-val">None</span>);

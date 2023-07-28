@@ -518,7 +518,7 @@
 
     <span class="doccomment">/// Takes ownership of a [`Strike`], then perform the strike onto the board.
     ///
-    /// Repeated strikes will be logged, but the state of the [`Position`] won&#39;t change.
+    /// Repeated strikes will be logged, but the state of the [`Coordinates`] won&#39;t change.
     </span><span class="kw">pub fn </span>add_strike(<span class="kw-2">&amp;mut </span><span class="self">self</span>, strike: Strike) -&gt; <span class="prelude-ty">Result</span>&lt;StrikeReport, AppError&gt; {
         <span class="self">self</span>.err_if_frozen()<span class="question-mark">?</span>;
 
