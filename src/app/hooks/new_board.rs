@@ -20,7 +20,8 @@ pub struct NewBoardHook {
 /// Parameters for the above [`Endpoint`].
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct NewBoardParams {
-    pub size: Option<[usize; 2]>,
+    pub width: Option<usize>,
+    pub height: Option<usize>,
     pub ship_count: Option<u16>,
 }
 impl<State> QueryParams<State> for NewBoardParams {}
@@ -40,7 +41,10 @@ where
     async fn call(&self, req: tide::Request<State>) -> tide::Result {
         Ok(NewBoardParams::parse_req(&req)
             .and_then(|params| {
-                let size = params.size.unwrap_or(config::DEFAULT_BOARD_SIZE);
+                let size = [
+                    params.width.unwrap_or(config::DEFAULT_BOARD_SIZE[0]),
+                    params.height.unwrap_or(config::DEFAULT_BOARD_SIZE[1]),
+                ];
                 let ship_count = params.ship_count.unwrap_or(config::DEFAULT_SHIP_COUNT);
 
                 self.locked_state

@@ -15,7 +15,7 @@ use super::{
     Strike, StrikeReport,
 };
 
-use crate::error::AppError;
+use crate::{config, error::AppError};
 
 #[cfg(feature = "debug")]
 use std::fmt::Display;
@@ -23,9 +23,10 @@ use std::fmt::Display;
 #[cfg(feature = "debug")]
 use crate::logger;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Board {
     uuid: Uuid,
+    #[serde(with = "config::serde_offset_date_time")]
     start_time: OffsetDateTime,
     size: [usize; 2],
     ships: Vec<Arc<Ship>>,
@@ -126,8 +127,25 @@ impl Board {
         }
     }
 
+    /// Return the number of ships remaining.
+    pub fn ships_remaining(&self) -> Result<usize, AppError> {
+        self.ships.iter().fold(Ok(0), |count, ship| {
+            count.and_then(|count| {
+                Ok(count + {
+                    if ship.status()? != ShipStatus::Sunk {
+                        1
+                    } else {
+                        0
+                    }
+                })
+            })
+        })
+    }
+
     /// Check if the player has won.
     pub fn has_won(&self) -> Result<bool, AppError> {
+        // This uses the logic above, but short circuits when the first unsunk
+        // ship is found.
         self.ships.iter().fold(Ok(true), |won, ship| {
             won.and_then(|won| Ok(won && (ship.status()? == ShipStatus::Sunk)))
         })
@@ -242,6 +260,8 @@ impl Board {
                     StrikeReport::try_from_position(pos, true)
                 }
             }
+            // Add the number of ships remaining to the generated report
+            .and_then(|report| Ok(report.with_ships_remaining(self.ships_remaining()?)))
         } else {
             Err(AppError::CoordinatesOutOfBounds {
                 x: strike_arc.x(),

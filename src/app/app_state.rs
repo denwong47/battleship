@@ -7,25 +7,26 @@ use std::{
     },
 };
 
+use serde::{Deserialize, Serialize};
 use time::OffsetDateTime;
 use uuid::Uuid;
 
 use crate::{
+    config,
     error::AppError,
     logger,
     models::{Board, BoardStatus},
 };
 
-use super::tasks::termination::TerminationToken;
+use super::{tasks::termination::TerminationToken, PageVisit};
 
-#[cfg(feature = "debug")]
-use crate::logger;
-
-use super::PageVisit;
-
+#[derive(Debug, Serialize, Deserialize)]
 pub struct AppState {
+    #[serde(with = "config::serde_offset_date_time")]
     start_time: OffsetDateTime,
+    #[serde(skip)]
     termination_token: Arc<TerminationToken>,
+    #[serde(skip)]
     boards: HashMap<Uuid, RwLock<Board>>,
     page_visits: HashMap<String, AtomicU64>,
     #[cfg(feature = "debug")]

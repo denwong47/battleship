@@ -1,4 +1,7 @@
 //! Hooks to be added to the tide App.
+mod app_status;
+pub use app_status::*;
+
 mod board_status;
 pub use board_status::BoardStatusHook;
 
