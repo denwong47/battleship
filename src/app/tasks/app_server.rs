@@ -35,6 +35,7 @@ pub async fn create_app(app_state: AppState) -> Server<()> {
         ("/list", ListBoardsHook),
         ("/status/:uuid", BoardStatusHook),
         ("/strike/:uuid", StrikeHook),
+        ("/info", AppStatusHook),
     );
 
     logger::debug("`tide::Server` created...");

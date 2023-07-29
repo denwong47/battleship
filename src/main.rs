@@ -12,7 +12,9 @@ use clap::Parser;
 async fn main() -> Result<(), AppError> {
     // Resolve configurations
     let cli_args = args::CommandLineParameters::parse();
-    let config = config::HostConfiguration::try_from_args(&cli_args)?;
+    let config = config::HostConfiguration::try_from_args(&cli_args)
+        .unwrap_or_default()
+        .resolve_with_args(&cli_args);
 
     logger::info("Starting `battleship` server.");
 

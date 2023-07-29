@@ -7,7 +7,6 @@ use crate::{
     error::AppError,
 };
 
-#[cfg(feature = "debug")]
 use crate::logger;
 
 /// Starts the host app.
@@ -24,6 +23,7 @@ pub async fn run_app(config: HostConfiguration) -> Result<(), AppError> {
     let termination_token = app_state.token();
 
     let app = tasks::app_server::create_app(app_state).await; // This is just awaiting the creation of the app.
+    logger::info(&format!("Ready to listen at {listen_target}...",));
 
     tokio::select! {
         result = app.listen(&listen_target) => {

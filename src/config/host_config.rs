@@ -7,7 +7,7 @@ use crate::{args::CommandLineParameters, error::AppError};
 
 use super::{DEFAULT_ADDR, DEFAULT_PORT};
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct HostConfiguration {
     pub addr: Option<String>,
     pub port: Option<u16>,
