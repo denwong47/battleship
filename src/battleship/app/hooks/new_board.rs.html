@@ -58,6 +58,10 @@
 <a href="#58" id="58">58</a>
 <a href="#59" id="59">59</a>
 <a href="#60" id="60">60</a>
+<a href="#61" id="61">61</a>
+<a href="#62" id="62">62</a>
+<a href="#63" id="63">63</a>
+<a href="#64" id="64">64</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>std::sync::{Arc, RwLock};
 
 <span class="kw">use </span>async_trait::async_trait;
@@ -80,7 +84,8 @@
 <span class="doccomment">/// Parameters for the above [`Endpoint`].
 </span><span class="attr">#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 </span><span class="kw">pub struct </span>NewBoardParams {
-    <span class="kw">pub </span>size: <span class="prelude-ty">Option</span>&lt;[usize; <span class="number">2</span>]&gt;,
+    <span class="kw">pub </span>width: <span class="prelude-ty">Option</span>&lt;usize&gt;,
+    <span class="kw">pub </span>height: <span class="prelude-ty">Option</span>&lt;usize&gt;,
     <span class="kw">pub </span>ship_count: <span class="prelude-ty">Option</span>&lt;u16&gt;,
 }
 <span class="kw">impl</span>&lt;State&gt; QueryParams&lt;State&gt; <span class="kw">for </span>NewBoardParams {}
@@ -100,7 +105,10 @@
     <span class="kw">async fn </span>call(<span class="kw-2">&amp;</span><span class="self">self</span>, req: tide::Request&lt;State&gt;) -&gt; tide::Result {
         <span class="prelude-val">Ok</span>(NewBoardParams::parse_req(<span class="kw-2">&amp;</span>req)
             .and_then(|params| {
-                <span class="kw">let </span>size = params.size.unwrap_or(config::DEFAULT_BOARD_SIZE);
+                <span class="kw">let </span>size = [
+                    params.width.unwrap_or(config::DEFAULT_BOARD_SIZE[<span class="number">0</span>]),
+                    params.height.unwrap_or(config::DEFAULT_BOARD_SIZE[<span class="number">1</span>]),
+                ];
                 <span class="kw">let </span>ship_count = params.ship_count.unwrap_or(config::DEFAULT_SHIP_COUNT);
 
                 <span class="self">self</span>.locked_state

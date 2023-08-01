@@ -27,6 +27,8 @@
 <a href="#27" id="27">27</a>
 <a href="#28" id="28">28</a>
 <a href="#29" id="29">29</a>
+<a href="#30" id="30">30</a>
+<a href="#31" id="31">31</a>
 </pre></div><pre class="rust"><code><span class="kw">pub mod </span>app;
 <span class="kw">pub mod </span>args;
 <span class="kw">pub mod </span>config;
@@ -41,7 +43,9 @@
 </span><span class="kw">async fn </span>main() -&gt; <span class="prelude-ty">Result</span>&lt;(), AppError&gt; {
     <span class="comment">// Resolve configurations
     </span><span class="kw">let </span>cli_args = args::CommandLineParameters::parse();
-    <span class="kw">let </span>config = config::HostConfiguration::try_from_args(<span class="kw-2">&amp;</span>cli_args)<span class="question-mark">?</span>;
+    <span class="kw">let </span>config = config::HostConfiguration::try_from_args(<span class="kw-2">&amp;</span>cli_args)
+        .unwrap_or_default()
+        .resolve_with_args(<span class="kw-2">&amp;</span>cli_args);
 
     logger::info(<span class="string">&quot;Starting `battleship` server.&quot;</span>);
 

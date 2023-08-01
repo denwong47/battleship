@@ -172,6 +172,7 @@
 <a href="#172" id="172">172</a>
 <a href="#173" id="173">173</a>
 <a href="#174" id="174">174</a>
+<a href="#175" id="175">175</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Stores the state of the app.
 </span><span class="kw">use </span>std::{
     collections::HashMap,
@@ -181,26 +182,27 @@
     },
 };
 
+<span class="kw">use </span>serde::{Deserialize, Serialize};
 <span class="kw">use </span>time::OffsetDateTime;
 <span class="kw">use </span>uuid::Uuid;
 
 <span class="kw">use crate</span>::{
+    config,
     error::AppError,
     logger,
     models::{Board, BoardStatus},
 };
 
-<span class="kw">use </span><span class="kw">super</span>::tasks::termination::TerminationToken;
+<span class="kw">use super</span>::{tasks::termination::TerminationToken, PageVisit};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;debug&quot;</span>)]
-</span><span class="kw">use </span><span class="kw">crate</span>::logger;
-
-<span class="kw">use </span><span class="kw">super</span>::PageVisit;
-
-<span class="kw">pub struct </span>AppState {
-    start_time: OffsetDateTime,
-    termination_token: Arc&lt;TerminationToken&gt;,
-    boards: HashMap&lt;Uuid, RwLock&lt;Board&gt;&gt;,
+<span class="attr">#[derive(Debug, Serialize, Deserialize)]
+</span><span class="kw">pub struct </span>AppState {
+    <span class="attr">#[serde(with = <span class="string">&quot;config::serde_offset_date_time&quot;</span>)]
+    </span>start_time: OffsetDateTime,
+    <span class="attr">#[serde(skip)]
+    </span>termination_token: Arc&lt;TerminationToken&gt;,
+    <span class="attr">#[serde(skip)]
+    </span>boards: HashMap&lt;Uuid, RwLock&lt;Board&gt;&gt;,
     page_visits: HashMap&lt;String, AtomicU64&gt;,
     <span class="attr">#[cfg(feature = <span class="string">&quot;debug&quot;</span>)]
     </span>visit_log: Vec&lt;PageVisit&gt;,

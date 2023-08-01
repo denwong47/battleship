@@ -56,7 +56,7 @@
 
 <span class="kw">use super</span>::{DEFAULT_ADDR, DEFAULT_PORT};
 
-<span class="attr">#[derive(Clone, Debug, Serialize, Deserialize)]
+<span class="attr">#[derive(Clone, Debug, Default, Serialize, Deserialize)]
 </span><span class="kw">pub struct </span>HostConfiguration {
     <span class="kw">pub </span>addr: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="kw">pub </span>port: <span class="prelude-ty">Option</span>&lt;u16&gt;,

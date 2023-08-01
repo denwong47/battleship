@@ -43,8 +43,7 @@
     error::AppError,
 };
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;debug&quot;</span>)]
-</span><span class="kw">use </span><span class="kw">crate</span>::logger;
+<span class="kw">use </span><span class="kw">crate</span>::logger;
 
 <span class="doccomment">/// Starts the host app.
 </span><span class="kw">pub async fn </span>run_app(config: HostConfiguration) -&gt; <span class="prelude-ty">Result</span>&lt;(), AppError&gt; {
@@ -60,8 +59,9 @@
     <span class="kw">let </span>termination_token = app_state.token();
 
     <span class="kw">let </span>app = tasks::app_server::create_app(app_state).<span class="kw">await</span>; <span class="comment">// This is just awaiting the creation of the app.
+    </span>logger::info(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;Ready to listen at {listen_target}...&quot;</span>,));
 
-    </span><span class="macro">tokio::select! </span>{
+    <span class="macro">tokio::select! </span>{
         result = app.listen(<span class="kw-2">&amp;</span>listen_target) =&gt; {
             result.map_err(|err| AppError::ServerStartUpError { addr: listen_target, err })
         },

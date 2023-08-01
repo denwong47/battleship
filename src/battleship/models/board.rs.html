@@ -301,6 +301,26 @@
 <a href="#301" id="301">301</a>
 <a href="#302" id="302">302</a>
 <a href="#303" id="303">303</a>
+<a href="#304" id="304">304</a>
+<a href="#305" id="305">305</a>
+<a href="#306" id="306">306</a>
+<a href="#307" id="307">307</a>
+<a href="#308" id="308">308</a>
+<a href="#309" id="309">309</a>
+<a href="#310" id="310">310</a>
+<a href="#311" id="311">311</a>
+<a href="#312" id="312">312</a>
+<a href="#313" id="313">313</a>
+<a href="#314" id="314">314</a>
+<a href="#315" id="315">315</a>
+<a href="#316" id="316">316</a>
+<a href="#317" id="317">317</a>
+<a href="#318" id="318">318</a>
+<a href="#319" id="319">319</a>
+<a href="#320" id="320">320</a>
+<a href="#321" id="321">321</a>
+<a href="#322" id="322">322</a>
+<a href="#323" id="323">323</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>ndarray::{s, Array2, Ix2, SliceInfo, SliceInfoElem};
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 <span class="kw">use </span>std::{
@@ -318,7 +338,7 @@
     Strike, StrikeReport,
 };
 
-<span class="kw">use </span><span class="kw">crate</span>::error::AppError;
+<span class="kw">use crate</span>::{config, error::AppError};
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;debug&quot;</span>)]
 </span><span class="kw">use </span>std::fmt::Display;
@@ -326,10 +346,11 @@
 <span class="attr">#[cfg(feature = <span class="string">&quot;debug&quot;</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::logger;
 
-<span class="attr">#[derive(Serialize, Deserialize)]
+<span class="attr">#[derive(Debug, Serialize, Deserialize)]
 </span><span class="kw">pub struct </span>Board {
     uuid: Uuid,
-    start_time: OffsetDateTime,
+    <span class="attr">#[serde(with = <span class="string">&quot;config::serde_offset_date_time&quot;</span>)]
+    </span>start_time: OffsetDateTime,
     size: [usize; <span class="number">2</span>],
     ships: Vec&lt;Arc&lt;Ship&gt;&gt;,
     strikes: Vec&lt;Arc&lt;Strike&gt;&gt;,
@@ -429,9 +450,26 @@
         }
     }
 
+    <span class="doccomment">/// Return the number of ships remaining.
+    </span><span class="kw">pub fn </span>ships_remaining(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;usize, AppError&gt; {
+        <span class="self">self</span>.ships.iter().fold(<span class="prelude-val">Ok</span>(<span class="number">0</span>), |count, ship| {
+            count.and_then(|count| {
+                <span class="prelude-val">Ok</span>(count + {
+                    <span class="kw">if </span>ship.status()<span class="question-mark">? </span>!= ShipStatus::Sunk {
+                        <span class="number">1
+                    </span>} <span class="kw">else </span>{
+                        <span class="number">0
+                    </span>}
+                })
+            })
+        })
+    }
+
     <span class="doccomment">/// Check if the player has won.
     </span><span class="kw">pub fn </span>has_won(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;bool, AppError&gt; {
-        <span class="self">self</span>.ships.iter().fold(<span class="prelude-val">Ok</span>(<span class="bool-val">true</span>), |won, ship| {
+        <span class="comment">// This uses the logic above, but short circuits when the first unsunk
+        // ship is found.
+        </span><span class="self">self</span>.ships.iter().fold(<span class="prelude-val">Ok</span>(<span class="bool-val">true</span>), |won, ship| {
             won.and_then(|won| <span class="prelude-val">Ok</span>(won &amp;&amp; (ship.status()<span class="question-mark">? </span>== ShipStatus::Sunk)))
         })
     }
@@ -545,6 +583,8 @@
                     </span>StrikeReport::try_from_position(pos, <span class="bool-val">true</span>)
                 }
             }
+            <span class="comment">// Add the number of ships remaining to the generated report
+            </span>.and_then(|report| <span class="prelude-val">Ok</span>(report.with_ships_remaining(<span class="self">self</span>.ships_remaining()<span class="question-mark">?</span>)))
         } <span class="kw">else </span>{
             <span class="prelude-val">Err</span>(AppError::CoordinatesOutOfBounds {
                 x: strike_arc.x(),
