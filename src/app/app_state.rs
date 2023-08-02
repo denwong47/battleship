@@ -1,4 +1,22 @@
 //! Stores the state of the app.
+//!
+//! The `battleship` is a tiny app that is designed entirely to run in memory.
+//! This prevents most if not all ways of cheating unless a way is devised to
+//! read into the app's allocated memory. This being written in Rust minimised
+//! that risk.
+//!
+//! However this goes against the principle of REST in that calls to the endpoints of
+//! this app is somewhat stateful, due to manipulation of board state within the
+//! app, as opposed to an external database, for instance.
+//!
+//! This presents unique challenges to the architecture of this app. Many Rust
+//! frameworks such as Actix requires the `Handler` to be `'static`, which would make it
+//! impossible for this app.
+//!
+//! Luckily [`tide`] imposes no lifetime restrictions on [`tide::Endpoint`], thus
+//! allowing any structs that implement the trait to have instances that are valid
+//! [`tide::Endpoint`]s. By passing around a [`AppState`] to all these
+//! [`tide::Endpoint`]s, an app state can be shared and maintained.
 use std::{
     collections::HashMap,
     sync::{
@@ -20,6 +38,14 @@ use crate::{
 
 use super::{tasks::termination::TerminationToken, PageVisit};
 
+#[allow(unused_imports)]
+use crate::models::traits::IsAppHook;
+
+/// Records the current state of the app, to be passed during instantiation of
+/// [`IsAppHook`].
+///
+/// Typically used behind a [`Arc<RwLock<AppState>>`], so that it can be safely
+/// [`Send`] and [`Sync`].
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AppState {
     #[serde(with = "config::serde_offset_date_time")]
@@ -31,6 +57,8 @@ pub struct AppState {
     page_visits: HashMap<String, AtomicU64>,
     #[cfg(feature = "debug")]
     visit_log: Vec<PageVisit>,
+    #[cfg(feature = "simulate_failures")]
+    pub simulated_failure_factor: Option<usize>,
 }
 
 impl Default for AppState {
@@ -43,6 +71,8 @@ impl Default for AppState {
             page_visits: HashMap::new(),
             #[cfg(feature = "debug")]
             visit_log: Vec::new(),
+            #[cfg(feature = "simulate_failures")]
+            simulated_failure_factor: None,
         }
     }
 }
@@ -51,6 +81,16 @@ impl AppState {
     /// Create a default [`AppState`] using the current UTC time.
     pub fn new() -> Self {
         Self::default()
+    }
+
+    /// Configure this [`AppState`] with the provided [`config::HostConfiguration`].
+    pub fn configure(mut self, host_config: &config::HostConfiguration) -> Self {
+        #[cfg(feature = "simulate_failures")]
+        {
+            self.simulated_failure_factor = host_config.simulated_failure_factor;
+        }
+
+        self
     }
 
     /// The [`time::Duration`] that had elapsed since the start of the app.

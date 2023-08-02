@@ -1,3 +1,6 @@
+//! Module containing the main [error] type [`AppError`]
+//!
+//! [error]: `std::error::Error`
 use http_types::mime;
 use serde_json;
 use std::io;

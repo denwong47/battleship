@@ -1,9 +1,14 @@
+//! A struct to log each visit to an endpoint of this app.
+//!
 use serde::{Deserialize, Serialize};
 use tide;
 use time::OffsetDateTime;
 
 use crate::config;
 
+/// A [`PageVisit`] struct capturing information about a single visit to an
+/// endpoint, such as the remote client, timestamp, endpoint path, url, the
+/// returned status code and any errors generated.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PageVisit {
     #[serde(with = "config::serde_offset_date_time")]

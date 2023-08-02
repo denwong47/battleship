@@ -14,6 +14,11 @@ pub use list_boards::ListBoardsHook;
 mod new_board;
 pub use new_board::NewBoardHook;
 
+#[cfg(feature = "simulate_failures")]
+mod simulated_failure;
+#[cfg(feature = "simulate_failures")]
+pub use simulated_failure::*;
+
 mod strike;
 pub use strike::StrikeHook;
 

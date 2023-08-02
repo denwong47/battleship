@@ -1,3 +1,5 @@
+//! Logging module, with public functions to print different levels of log messages to `stderr`. Supports JSONL logging.
+
 #[cfg(feature = "jsonl_logging")]
 use serde_json;
 

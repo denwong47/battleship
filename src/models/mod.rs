@@ -1,4 +1,11 @@
-//! A collection of structs.
+//! A collection of structs and traits to facilitate the game.
+//!
+//! #### Note
+//!
+//! Objects in this module should be considered useful for export; thus app specific
+//! structs such as those implementing [Endpoint] should not be in this module.
+//!
+//! [Endpoint]: `tide::Endpoint`
 
 mod board;
 pub use board::*;
@@ -34,3 +41,6 @@ mod strike_report;
 pub use strike_report::*;
 
 pub mod traits;
+
+#[allow(unused_imports)]
+use tide::Endpoint;
