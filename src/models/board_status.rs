@@ -1,3 +1,6 @@
+//! Serializable status of a [`Board`], used for describing the state of a game
+//! without disclosing any secrets.
+
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 

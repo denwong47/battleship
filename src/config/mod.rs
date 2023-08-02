@@ -1,3 +1,6 @@
+//! Configuration module, containing constants, statics and [`HostConfiguration`] struct
+//! to store runtime configurations.
+
 use lazy_static::lazy_static;
 use time;
 
@@ -10,6 +13,7 @@ pub const SHIP_GENERATION_MAX_RETRY: u16 = 32;
 pub const DEFAULT_CONFIG_PATH: &str = "./host.json";
 pub const DEFAULT_ADDR: &str = "0.0.0.0";
 pub const DEFAULT_PORT: u16 = 8080;
+pub const DEFAULT_SIMULATED_FAILURE_FACTOR: usize = 32;
 
 pub const DEFAULT_BOARD_SIZE: [usize; 2] = [16, 16];
 pub const DEFAULT_SHIP_COUNT: u16 = 8;

@@ -13,6 +13,7 @@ simulate_failures = []
 
 [dependencies]
 async-ctrlc = "1.2.0"
+async-std = { version = "1.12.0", features = ["tokio1"] }
 async-trait = "0.1.72"
 clap = { version = "4", features = ["derive"] }
 http-types = "2.12.0"

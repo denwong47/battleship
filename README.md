@@ -5,6 +5,8 @@
 ![Github Pages](https://github.com/denwong47/battleship/actions/workflows/gh_pages.yml/badge.svg?branch=main)
 ![Publish status](https://github.com/denwong47/battleship/actions/workflows/publish.yml/badge.svg?branch=main)
 
+### *Documentation at [Github pages](https://denwong47.github.io/battleship/battleship/)*
+
 This simple API End point hosts a single-player variation of the "Battleship"
 game, in which a player call "shots" at the host's fleet of warships randomly
 distributed on a concealed gridded board, with the objective of destroying all

@@ -5,3 +5,5 @@
 !/target/*/release/battleship.exe
 /target/*.json
 /target/*.TAG
+
+host.json
