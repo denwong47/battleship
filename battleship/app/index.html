@@ -1,2 +1,238 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `app` mod in crate `battleship`."><title>battleship::app - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-f3501f0f5ae15dfb.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="battleship" data-themes="" data-resource-suffix="" data-rustdoc-version="1.71.0 (8ede3aae2 2023-07-12)" data-search-js="search-4926e5fc22a5646a.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../../static.files/main-f0540c1d82cde29b.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../battleship/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../battleship/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Module app</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#functions">Functions</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../index.html">battleship</a>::<wbr><a class="mod" href="#">app</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/battleship/app/mod.rs.html#1-15">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="app_hook/index.html" title="mod battleship::app::app_hook">app_hook</a><span title="Restricted Visibility">&nbsp;🔒</span> </div></li><li><div class="item-name"><a class="mod" href="app_state/index.html" title="mod battleship::app::app_state">app_state</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">Stores the state of the app.</div></li><li><div class="item-name"><a class="mod" href="base/index.html" title="mod battleship::app::base">base</a><span title="Restricted Visibility">&nbsp;🔒</span> </div></li><li><div class="item-name"><a class="mod" href="hooks/index.html" title="mod battleship::app::hooks">hooks</a></div><div class="desc docblock-short">Hooks to be added to the tide App.</div></li><li><div class="item-name"><a class="mod" href="page_visit/index.html" title="mod battleship::app::page_visit">page_visit</a><span title="Restricted Visibility">&nbsp;🔒</span> </div></li><li><div class="item-name"><a class="mod" href="tasks/index.html" title="mod battleship::app::tasks">tasks</a></div><div class="desc docblock-short">Tasks creating Async futures</div></li></ul><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.AppHook.html" title="struct battleship::app::AppHook">AppHook</a></div><div class="desc docblock-short">An <a href="app_hook/struct.AppHook.html" title="struct battleship::app::app_hook::AppHook"><code>AppHook</code></a> that wraps a [<code>tide::Endpoint</code>], allowing something to be done to an
-<a href="app_state/struct.AppState.html" title="struct battleship::app::app_state::AppState"><code>AppState</code></a> before each [<code>tide::Endpoint::call()</code>].</div></li><li><div class="item-name"><a class="struct" href="struct.AppState.html" title="struct battleship::app::AppState">AppState</a></div></li><li><div class="item-name"><a class="struct" href="struct.PageVisit.html" title="struct battleship::app::PageVisit">PageVisit</a></div></li></ul><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.run_app.html" title="fn battleship::app::run_app">run_app</a></div><div class="desc docblock-short">Starts the host app.</div></li></ul></section></div></main></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="`tokio` application, including the main `tide` routine to host the game."><title>battleship::app - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-f3501f0f5ae15dfb.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="battleship" data-themes="" data-resource-suffix="" data-rustdoc-version="1.71.1 (eb26296b5 2023-08-03)" data-search-js="search-4926e5fc22a5646a.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../../static.files/main-f0540c1d82cde29b.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../battleship/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../battleship/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Module app</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#functions">Functions</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../index.html">battleship</a>::<wbr><a class="mod" href="#">app</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/battleship/app/mod.rs.html#1-311">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>[<code>tokio</code>] application, including the main [<code>tide</code>] routine to host the game.</p>
+<h3 id="available-paths"><a href="#available-paths">Available Paths</a></h3><h4 id="new"><a href="#new"><code>/new</code></a></h4><h5 id="syntax"><a href="#syntax">Syntax:</a></h5><div class="example-wrap"><pre class="language-text"><code>/new?width=&lt;u64&gt;&amp;height=&lt;u64&gt;&amp;ship_count=&lt;usize&gt;
+</code></pre></div>
+<p><em>Create a new game with the stated parameters.</em></p>
+<p>All parameters are optional:</p>
+<ul>
+<li><code>width</code>: board width, default <code>16</code>,</li>
+<li><code>height</code>: board height, default <code>16</code>, and</li>
+<li><code>ship_count</code>: number of ships to aim to create. There is no guarantee that
+this amount of ships will be present in the resultant board - this was simply
+the aimed amount. Each ship creation is tried for <code>32</code> times before giving up.
+The number of ships will never exceed this number.</li>
+</ul>
+<h5 id="example-return"><a href="#example-return">Example return:</a></h5><div class="example-wrap"><pre class="language-json"><code>{
+  &quot;action&quot;: &quot;createGame&quot;,
+  &quot;game&quot;: {
+    &quot;active&quot;: true,
+    &quot;elapsed&quot;: 0.000089,
+    &quot;ship_intel&quot;: [
+      {
+        &quot;damages&quot;: 0,
+        &quot;ship_type&quot;: &quot;Battleship&quot;,
+        &quot;status&quot;: &quot;Undiscovered&quot;,
+        &quot;uuid&quot;: &quot;593f093a-620b-4bf4-ba31-e8ee5b4d9de5&quot;
+      },
+      {
+        &quot;damages&quot;: 0,
+        &quot;ship_type&quot;: &quot;Cruiser&quot;,
+        &quot;status&quot;: &quot;Undiscovered&quot;,
+        &quot;uuid&quot;: &quot;01e96180-2910-4f09-930d-f75bafcacf53&quot;
+      },
+      {
+        &quot;damages&quot;: 0,
+        &quot;ship_type&quot;: &quot;AircraftCarrier&quot;,
+        &quot;status&quot;: &quot;Undiscovered&quot;,
+        &quot;uuid&quot;: &quot;919c5d58-aabf-481e-ae7f-3f601816f629&quot;
+      },
+      {
+        &quot;damages&quot;: 0,
+        &quot;ship_type&quot;: &quot;Battleship&quot;,
+        &quot;status&quot;: &quot;Undiscovered&quot;,
+        &quot;uuid&quot;: &quot;4d22ea2a-5ec3-4117-a8e5-ed6ecae8efcf&quot;
+      }
+    ],
+    &quot;size&quot;: [
+      8,
+      6
+    ],
+    &quot;strikes&quot;: 0,
+    &quot;uuid&quot;: &quot;9e3bfde9-4248-49fd-8550-3e773c3deca6&quot;
+  },
+  &quot;success&quot;: true
+}
+</code></pre></div>
+<p>Example board</p>
+<div class="example-wrap"><pre class="language-text"><code>        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+     0     ██
+     1     ██            ░░
+     2 ██  ██        ██  ██    ██  ░░
+     3 ██            ██  ██    ██
+     4   ██      ╳╳      ██    ██
+     5   ██    ░░╳╳            ██    ╳╳
+     6   ██    ██                    ╳╳
+     7   ██    ██    ░░              ╳╳
+     8         ██                    ░░
+     9     ██████                    ██
+    10                 ╳╳░░      ██  ╳╳
+    11 ██              ╳╳░░      ██  ╳╳
+    12 ██      ░░      ██            ░░
+    13 ██        ░░        ╳╳████
+    14
+    15         ██████████
+</code></pre></div><h4 id="statusuuid"><a href="#statusuuid"><code>/status/&lt;uuid&gt;</code></a></h4><h5 id="syntax-1"><a href="#syntax-1">Syntax:</a></h5><div class="example-wrap"><pre class="language-text"><code>/status/&lt;uuid&gt;
+</code></pre></div>
+<p><em>Give the status of the board without giving away any secrets of the game.</em></p>
+<h5 id="example-return-1"><a href="#example-return-1">Example return:</a></h5><div class="example-wrap"><pre class="language-json"><code>{
+  &quot;active&quot;: true,
+  &quot;elapsed&quot;: 991.084999,
+  &quot;ship_intel&quot;: [
+    {
+      &quot;damages&quot;: 0,
+      &quot;ship_type&quot;: &quot;Battleship&quot;,
+      &quot;status&quot;: &quot;Undiscovered&quot;,
+      &quot;uuid&quot;: &quot;593f093a-620b-4bf4-ba31-e8ee5b4d9de5&quot;
+    },
+    {
+      &quot;damages&quot;: 0,
+      &quot;ship_type&quot;: &quot;Cruiser&quot;,
+      &quot;status&quot;: &quot;Undiscovered&quot;,
+      &quot;uuid&quot;: &quot;01e96180-2910-4f09-930d-f75bafcacf53&quot;
+    },
+    {
+      &quot;damages&quot;: 0,
+      &quot;ship_type&quot;: &quot;AircraftCarrier&quot;,
+      &quot;status&quot;: &quot;Undiscovered&quot;,
+      &quot;uuid&quot;: &quot;919c5d58-aabf-481e-ae7f-3f601816f629&quot;
+    },
+    {
+      &quot;damages&quot;: 0,
+      &quot;ship_type&quot;: &quot;Battleship&quot;,
+      &quot;status&quot;: &quot;Undiscovered&quot;,
+      &quot;uuid&quot;: &quot;4d22ea2a-5ec3-4117-a8e5-ed6ecae8efcf&quot;
+    }
+  ],
+  &quot;size&quot;: [
+    8,
+    6
+  ],
+  &quot;strikes&quot;: 0,
+  &quot;uuid&quot;: &quot;9e3bfde9-4248-49fd-8550-3e773c3deca6&quot;
+}
+</code></pre></div><h4 id="strikeuuid"><a href="#strikeuuid"><code>/strike/&lt;uuid&gt;</code></a></h4><h5 id="syntax-2"><a href="#syntax-2">Syntax:</a></h5><div class="example-wrap"><pre class="language-text"><code>/strike/&lt;uuid&gt;?x=&lt;u64&gt;&amp;y=&lt;u64&gt;
+</code></pre></div>
+<p><em>Perform a strike on the specified coordinates.</em></p>
+<h5 id="example-return-2"><a href="#example-return-2">Example return:</a></h5>
+<ul>
+<li>
+<p>Missed:</p>
+<div class="example-wrap"><pre class="language-json"><code>{
+  &quot;coordinates&quot;: {
+    &quot;x&quot;: 12,
+    &quot;y&quot;: 4
+  },
+  &quot;hit&quot;: false,
+  &quot;intel&quot;: null,
+  &quot;ships_remaining&quot;: 7,
+  &quot;uuid&quot;: &quot;281834dc-a688-45a2-ba72-311a757cc0ca&quot;
+}
+</code></pre></div></li>
+<li>
+<p>Hit:</p>
+<div class="example-wrap"><pre class="language-json"><code>{
+  &quot;coordinates&quot;: {
+    &quot;x&quot;: 7,
+    &quot;y&quot;: 9
+  },
+  &quot;hit&quot;: true,
+  &quot;intel&quot;: {
+    &quot;damages&quot;: 1,
+    &quot;ship_type&quot;: &quot;Battleship&quot;,
+    &quot;status&quot;: &quot;Discovered&quot;,
+    &quot;uuid&quot;: &quot;91efacf4-f97d-4478-b1aa-a7df6d2534f7&quot;
+  },
+  &quot;ships_remaining&quot;: 7,
+  &quot;uuid&quot;: &quot;af7d69e9-1809-4d1e-97aa-d76ce3fa303e&quot;
+}
+</code></pre></div></li>
+<li>
+<p>Coordinates out of bounds:</p>
+<div class="example-wrap"><pre class="language-json"><code>{
+  &quot;error&quot;: &quot;CoordinatesOutOfBounds&quot;,
+  &quot;message&quot;: &quot;Coordinates (7, 16) is out of bounds.&quot;
+}
+</code></pre></div></li>
+</ul>
+<h4 id="dropuuid"><a href="#dropuuid"><code>/drop/&lt;uuid&gt;</code></a></h4><h5 id="syntax-3"><a href="#syntax-3">Syntax:</a></h5><div class="example-wrap"><pre class="language-text"><code>/drop/&lt;uuid&gt;
+</code></pre></div>
+<p><em>Finish a game, and return the current unobscured state of the board.</em></p>
+<p>This will remove the game from the server permanently.</p>
+<h5 id="example-return-3"><a href="#example-return-3">Example return:</a></h5><div class="example-wrap"><pre class="language-json"><code>{
+  &quot;frozen&quot;: false,
+  &quot;position_index&quot;: {
+    ...
+  },
+  &quot;ships&quot;: [
+    {
+      &quot;coordinates&quot;: {
+        &quot;x&quot;: 1,
+        &quot;y&quot;: 2
+      },
+      &quot;orientation&quot;: &quot;Down&quot;,
+      &quot;ship_type&quot;: &quot;Cruiser&quot;,
+      &quot;strikes&quot;: [
+        null,
+        null,
+        null
+      ],
+      &quot;uuid&quot;: &quot;c79d876c-2778-4aca-ac6d-f643b14e2b14&quot;
+    },
+    {
+      &quot;coordinates&quot;: {
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 1
+      },
+      &quot;orientation&quot;: &quot;Right&quot;,
+      &quot;ship_type&quot;: &quot;Submarine&quot;,
+      &quot;strikes&quot;: [
+        null,
+        null,
+        null
+      ],
+      &quot;uuid&quot;: &quot;150024d8-53c3-4b58-9e13-d11380b47885&quot;
+    },
+    {
+      &quot;coordinates&quot;: {
+        &quot;x&quot;: 2,
+        &quot;y&quot;: 2
+      },
+      &quot;orientation&quot;: &quot;Down&quot;,
+      &quot;ship_type&quot;: &quot;Cruiser&quot;,
+      &quot;strikes&quot;: [
+        null,
+        null,
+        null
+      ],
+      &quot;uuid&quot;: &quot;f34f6cd3-e9f7-4b4a-b448-eee830941fc4&quot;
+    }
+  ],
+  &quot;size&quot;: [
+    6,
+    6
+  ],
+  &quot;start_time&quot;: &quot;2023-07-31T08:20:51.814026&quot;,
+  &quot;strikes&quot;: [],
+  &quot;uuid&quot;: &quot;255f3c2b-b5dd-4850-b0e9-bfc6551747b4&quot;
+}
+</code></pre></div><h4 id="info"><a href="#info"><code>/info</code></a></h4><h5 id="syntax-4"><a href="#syntax-4">Syntax:</a></h5><div class="example-wrap"><pre class="language-text"><code>/info
+</code></pre></div>
+<p><em>Prints out information about the state of the app.</em></p>
+<h5 id="example-return-4"><a href="#example-return-4">Example return:</a></h5><div class="example-wrap"><pre class="language-json"><code>{
+  &quot;page_visits&quot;: {
+    &quot;/drop/55a8e295-909c-4054-a18f-87ef6002e343&quot;: 1,
+    &quot;/info&quot;: 2,
+    &quot;/new&quot;: 2,
+    &quot;/status/55a8e295-909c-4054-a18f-87ef6002e343&quot;: 1,
+    &quot;/status/v&quot;: 1,
+    &quot;/strike/55a8e295-909c-4054-a18f-87ef6002e343&quot;: 6
+  },
+  &quot;start_time&quot;: &quot;2023-08-01T21:09:31.404040&quot;
+}
+</code></pre></div>
+<p>If the executable is built with the <code>debug</code> feature, a full visit log will also
+be included.</p>
+</div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="app_hook/index.html" title="mod battleship::app::app_hook">app_hook</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">A wrapper for [<code>tide::Endpoint</code>] which in itself is a [<code>tide::Endpoint</code>].</div></li><li><div class="item-name"><a class="mod" href="app_state/index.html" title="mod battleship::app::app_state">app_state</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">Stores the state of the app.</div></li><li><div class="item-name"><a class="mod" href="base/index.html" title="mod battleship::app::base">base</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">The main function which starts the app using the given <a href="../config/host_config/struct.HostConfiguration.html" title="struct battleship::config::host_config::HostConfiguration"><code>HostConfiguration</code></a>.</div></li><li><div class="item-name"><a class="mod" href="hooks/index.html" title="mod battleship::app::hooks">hooks</a></div><div class="desc docblock-short">Hooks to be added to the tide App.</div></li><li><div class="item-name"><a class="mod" href="page_visit/index.html" title="mod battleship::app::page_visit">page_visit</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">A struct to log each visit to an endpoint of this app.</div></li><li><div class="item-name"><a class="mod" href="tasks/index.html" title="mod battleship::app::tasks">tasks</a></div><div class="desc docblock-short">Tasks creating Async futures</div></li></ul><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.AppHook.html" title="struct battleship::app::AppHook">AppHook</a></div><div class="desc docblock-short">An <a href="app_hook/struct.AppHook.html" title="struct battleship::app::app_hook::AppHook"><code>AppHook</code></a> that wraps a [<code>tide::Endpoint</code>], allowing something to be done to an
+<a href="app_state/struct.AppState.html" title="struct battleship::app::app_state::AppState"><code>AppState</code></a> before each [<code>tide::Endpoint::call()</code>].</div></li><li><div class="item-name"><a class="struct" href="struct.AppState.html" title="struct battleship::app::AppState">AppState</a></div><div class="desc docblock-short">Records the current state of the app, to be passed during instantiation of
+<a href="../models/traits/is_app_hook/trait.IsAppHook.html" title="trait battleship::models::traits::is_app_hook::IsAppHook"><code>IsAppHook</code></a>.</div></li><li><div class="item-name"><a class="struct" href="struct.PageVisit.html" title="struct battleship::app::PageVisit">PageVisit</a></div><div class="desc docblock-short">A <a href="page_visit/struct.PageVisit.html" title="struct battleship::app::page_visit::PageVisit"><code>PageVisit</code></a> struct capturing information about a single visit to an
+endpoint, such as the remote client, timestamp, endpoint path, url, the
+returned status code and any errors generated.</div></li></ul><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.run_app.html" title="fn battleship::app::run_app">run_app</a></div><div class="desc docblock-short">Starts the host app.</div></li></ul></section></div></main></body></html>
