@@ -14,7 +14,7 @@ pub enum Orientation {
 
 impl Distribution<Orientation> for Standard {
     fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> Orientation {
-        match rng.gen_range(0..=4) {
+        match rng.gen_range(0..=1) {
             0 => Orientation::Right,
             _ => Orientation::Down,
         }

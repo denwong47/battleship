@@ -15,8 +15,8 @@ pub const DEFAULT_ADDR: &str = "0.0.0.0";
 pub const DEFAULT_PORT: u16 = 8080;
 pub const DEFAULT_SIMULATED_FAILURE_FACTOR: usize = 32;
 
-pub const DEFAULT_BOARD_SIZE: [usize; 2] = [16, 16];
-pub const DEFAULT_SHIP_COUNT: u16 = 8;
+pub const DEFAULT_BOARD_SIZE: [usize; 2] = [10, 10];
+pub const DEFAULT_SHIP_COUNT: u16 = 5;
 
 lazy_static!(
     /// The default datetime format for use in this app.

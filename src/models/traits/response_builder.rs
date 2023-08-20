@@ -1,8 +1,7 @@
-use http_types::mime;
 use serde::Serialize;
 use tide;
 
-use crate::AppError;
+use crate::{models::traits::AddDefaultHeaders, AppError};
 
 pub trait ResponseBuilder {
     /// Build a [`tide::Response`] from this instance.
@@ -24,7 +23,7 @@ where
                 match ser_result {
                     Ok(body) => tide::Response::builder(tide::StatusCode::Ok)
                         .body(body)
-                        .content_type(mime::JSON)
+                        .add_default_headers()
                         .build(),
                     Err(err) => err.into(),
                 }

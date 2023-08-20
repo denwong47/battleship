@@ -40,6 +40,13 @@ repos:
         fail_fast: true
 -   repo: local
     hooks:
+      - id: next-eslint
+        name: next-eslint
+        entry: bash -c 'npm run lint'
+        language: system
+        fail_fast: true
+-   repo: local
+    hooks:
       - id: cargo-clippy
         name: cargo-clippy
         entry: bash -c 'cargo clippy -- -D warnings'

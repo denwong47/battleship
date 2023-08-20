@@ -33,8 +33,6 @@ impl Display for Position {
             Self::Missed(_) => CHAR_MISSED.to_string(),
         };
 
-        (0..=1).fold(Ok(()), |result, _| {
-            result.and_then(|_| write!(f, "{}", content))
-        })
+        (0..=1).try_fold((), |_, _| write!(f, "{}", content))
     }
 }

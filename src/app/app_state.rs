@@ -33,7 +33,7 @@ use crate::{
     config,
     error::AppError,
     logger,
-    models::{Board, BoardStatus},
+    models::{Board, BoardStatus, StrikeReport},
 };
 
 use super::{tasks::termination::TerminationToken, PageVisit};
@@ -173,6 +173,15 @@ impl AppState {
                     #[allow(clippy::let_and_return)]
                     status
                 })
+        })
+    }
+
+    /// Get all the [`StrikeReport`]s that occured on the specified board.
+    pub fn get_board_strikes(&self, uuid: Uuid) -> Result<Vec<StrikeReport>, AppError> {
+        self.get_board(uuid).and_then(|lock| {
+            lock.read()
+                .map_err(|_| AppError::LockPoisoned("Board"))
+                .map(|board| board.strike_reports())
         })
     }
 
