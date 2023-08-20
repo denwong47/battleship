@@ -129,15 +129,13 @@ impl Board {
 
     /// Return the number of ships remaining.
     pub fn ships_remaining(&self) -> Result<usize, AppError> {
-        self.ships.iter().fold(Ok(0), |count, ship| {
-            count.and_then(|count| {
-                Ok(count + {
-                    if ship.status()? != ShipStatus::Sunk {
-                        1
-                    } else {
-                        0
-                    }
-                })
+        self.ships.iter().try_fold(0, |count, ship| {
+            Ok(count + {
+                if ship.status()? != ShipStatus::Sunk {
+                    1
+                } else {
+                    0
+                }
             })
         })
     }
@@ -146,8 +144,8 @@ impl Board {
     pub fn has_won(&self) -> Result<bool, AppError> {
         // This uses the logic above, but short circuits when the first unsunk
         // ship is found.
-        self.ships.iter().fold(Ok(true), |won, ship| {
-            won.and_then(|won| Ok(won && (ship.status()? == ShipStatus::Sunk)))
+        self.ships.iter().try_fold(true, |won, ship| {
+            Ok(won && (ship.status()? == ShipStatus::Sunk))
         })
     }
 
@@ -285,6 +283,34 @@ impl Board {
                 .map(|ship| ShipIntel::try_from(ship.deref())),
         )
     }
+
+    /// Returns a report of all the strikes that had been made.
+    pub fn strike_reports(&self) -> Vec<StrikeReport> {
+        let mut seen = Vec::with_capacity(self.strikes.len());
+
+        self.strikes
+            .iter()
+            .map(|strike| {
+                let coordinates = strike.coordinates();
+                if let Some(pos) = self.position_index.get(coordinates) {
+                    let repeated = if !seen.contains(&coordinates) {
+                        seen.push(coordinates);
+                        false
+                    } else {
+                        true
+                    };
+
+                    StrikeReport::try_from_position(pos, repeated)
+                } else {
+                    Err(AppError::CoordinatesOutOfBounds {
+                        x: strike.x(),
+                        y: strike.y(),
+                    })
+                }
+            })
+            .filter_map(Result::ok)
+            .collect()
+    }
 }
 
 #[cfg(feature = "debug")]
@@ -311,9 +337,9 @@ impl Display for Board {
                         f,
                         "{:2} {}",
                         row_id,
-                        array
-                            .iter()
-                            .fold(String::new(), |string, item| { string + &item.to_string() })
+                        array.iter().fold(String::new(), |string, item| {
+                            string + item.to_string().as_str()
+                        })
                     )
                 },
             ))?;

@@ -11,6 +11,9 @@ pub use drop_board::DropBoardHook;
 mod list_boards;
 pub use list_boards::ListBoardsHook;
 
+mod list_strikes;
+pub use list_strikes::ListStrikesHook;
+
 mod new_board;
 pub use new_board::NewBoardHook;
 

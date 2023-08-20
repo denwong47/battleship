@@ -1,13 +1,12 @@
 //! Module containing the main [error] type [`AppError`]
 //!
 //! [error]: `std::error::Error`
-use http_types::mime;
 use serde_json;
 use std::io;
 use thiserror::Error;
 use uuid::Uuid;
 
-use crate::logger;
+use crate::{logger, models::traits::AddDefaultHeaders};
 
 /// A collection of all possible errors raised by the app.
 #[derive(Debug, Error)]
@@ -169,7 +168,7 @@ impl From<&AppError> for tide::Response {
             )
             .unwrap()
         }))
-        .content_type(mime::JSON)
+        .add_default_headers()
         .build()
     }
 }

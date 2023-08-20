@@ -55,10 +55,10 @@ impl Ship {
 
     /// Return the current status of the ship.
     pub fn status(&self) -> Result<ShipStatus, AppError> {
-        let (all_none, all_some) = self.strikes.iter().fold(Ok((true, true)), |result, lock| {
+        let (all_none, all_some) = self.strikes.iter().try_fold((true, true), |result, lock| {
             lock.read()
                 .map_err(|_| AppError::LockPoisoned("Ship strikes index"))
-                .and_then(|opt| result.map(|(all_none, all_some)| (all_none, all_some, opt)))
+                .map(|opt| (result.0, result.1, opt))
                 .map(|(mut all_none, mut all_some, opt)| {
                     all_none = all_none && opt.is_none();
                     all_some = all_some && opt.is_some();

@@ -1,3 +1,10 @@
+//! # Traits
+//!
+//! This module contains all the traits used by the models.
+//!
+mod add_default_headers;
+pub use add_default_headers::*;
+
 mod is_app_hook;
 pub use is_app_hook::*;
 

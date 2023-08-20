@@ -7,3 +7,6 @@
 /target/*.TAG
 
 host.json
+node_modules
+
+**/.next
