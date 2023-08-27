@@ -2,13 +2,15 @@ import { Uuid } from './id'
 
 export class ShipIntel {
     damages: number
-    ship_type: string
+    remaining: number
+    shipType: string
     status: "Undiscovered" | "Discovered" | "Sunk"
     uuid: Uuid
 
-    constructor(damages: number, ship_type: string, status: "Undiscovered" | "Discovered" | "Sunk", uuid: Uuid) {
+    constructor(damages: number, remaining: number, shipType: string, status: "Undiscovered" | "Discovered" | "Sunk", uuid: Uuid) {
         this.damages = damages
-        this.ship_type = ship_type
+        this.remaining = remaining
+        this.shipType = shipType
         this.status = status
         this.uuid = uuid
     }
@@ -17,7 +19,7 @@ export class ShipIntel {
         let uuid = Uuid.fromString(json.uuid)
 
         if (uuid !== null) {
-            return new ShipIntel(json.damages, json.ship_type, json.status, uuid)
+            return new ShipIntel(json.damages, json.remaining, json.ship_type, json.status, uuid)
         } else {
             return null
         }

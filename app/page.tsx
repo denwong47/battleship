@@ -4,6 +4,9 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 
 import TextField from '@/components/textField'
+import Title from '@/components/titleBar'
+import InputButton from '@/components/inputButton'
+import ToolTip from '@/components/tooltip'
 import { CheckResult } from '@/components/textField'
 import { Uuid } from '@/components/types/id'
 
@@ -17,7 +20,12 @@ export default function Home() {
     message: "No checking had been conducting yet.",
   })
 
+  const tooltipClassEnabled = "opacity-75 blur-none drop-shadow-[0_0_0.4rem_#ffffff99]"
+  const tooltipClassDisabled = "opacity-0 blur-[6px]"
+
   const [existingBoards, setExistingBoards] = useState<Array<[string, string]>>([])
+  const [tooltipText, setTooltipText] = useState<string>("")
+  const [tooltipClassNames, setTooltipClassNames] = useState<string>(tooltipClassDisabled)
 
   if ( config.simulated_failure_factor != 0 ) {
     console.log("Simulating failure at a non-zero rate. This interface does not currently support failure simulation; some requests may fail.")
@@ -77,13 +85,40 @@ export default function Home() {
     return await goToBoard(response)
   }
 
+  function tooltipToggle(enabled: boolean, text: string) {
+    setTooltipText(text)
+    setTooltipClassNames(enabled ? tooltipClassEnabled : tooltipClassDisabled)
+  }
+
   useEffect(() => {
     getExistingBoards().catch(console.error)
   }, [])
 
   return (
     <main className="flex-table grid-cols-2">
-        <input type="button" className='
+        <Title
+          title="battleship"
+          classNames="
+            col-span-2
+            font-serif
+            tracking-[1.5rem]
+            text-4xl
+            font-light
+            text-slate-400
+            text-center
+            pb-8
+            blur-[2px]
+            hover:blur-none
+            transition
+            ease-in-out
+            duration-1000
+            translate-x-[0.9rem]
+            hover:drop-shadow-[0_0_1.4rem_#ffffffff]
+        "
+          tooltipText='A pointless battleship game against the computer for demonstration only.'
+          tooltipToggle={tooltipToggle}
+        />
+        <InputButton classNames='
             cursor-pointer
             rounded-l-full
 
@@ -94,21 +129,27 @@ export default function Home() {
             from-yellow-800
             to-red-600
 
+            blur-[2px]
+            hover:blur-none
+
             hover:from-yellow-700
             hover:to-red-500
             hover:text-white
 
             transition
             ease-in-out
-            duration-300
+            duration-1000
 
-            text-slate-400
+            text-black
             text-center
-            font-mono
-            font-semibold
-            placeholder:text-slate-400
-            placeholder:font-light
-          ' value="new board" onClick={goToNewBoard} />
+            font-serif
+            font-light
+          '
+          caption="new board"
+          clickAction={goToNewBoard}
+          tooltipText='Create a new game with default settings: 10x10, 5 ships.'
+          tooltipToggle={tooltipToggle}
+        />
         <TextField
           typeAction={checkUUID}
           enterAction={goToExistingBoard}
@@ -127,16 +168,41 @@ export default function Home() {
 
             transition
             ease-in-out
-            duration-300
+            duration-1000
+
+            blur-[2px]
+            hover:blur-none
+            focus:blur-none
 
             text-white
             text-center
             font-mono
             font-semibold
-            placeholder:text-slate-400
+            placeholder:text-black
             placeholder:font-light
+            placeholder:font-serif
           '
+          tooltipText='Enter UUID of an existing board you want to continue.'
+          tooltipToggle={tooltipToggle}
         />
+        <ToolTip text={tooltipText} classNames={`
+            col-span-2
+            text-center
+            font-serif
+            font-light
+            text-slate-500
+            text-sm
+
+            transition
+            ease-in-out
+            duration-1000
+
+            pt-8
+
+            h-24
+
+          ` + tooltipClassNames
+        }/>
         </main>
   )
 }
