@@ -6,15 +6,66 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --bg-ship-size: 30px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 12, 0, 12;
+    --background-end-rgb: 0, 0, 64;
   }
 }
+
+
+:root {
+  --position-cell-width: 4rem;
+  --position-icon-size: 2.25rem;
+  --position-cell-spacing: 10px;
+  --board-control-button-size: 2rem;
+  --board-control-icon-size: 1.5rem;
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --position-cell-width: 2rem;
+    --position-icon-size: 1.2rem;
+    --position-cell-spacing: 6px;
+    --board-control-button-size: 2rem;
+    --board-control-icon-size: 1.5rem;
+  }
+  body {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --position-cell-width: 2rem;
+    --position-icon-size: 1.25rem;
+    --position-cell-spacing: 4px;
+    --board-control-button-size: 2rem;
+    --board-control-icon-size: 1.8rem;
+  }
+  body {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --position-cell-width: 1.0rem;
+    --position-icon-size: 0.7rem;
+    --position-cell-spacing: 2px;
+    --board-control-button-size: 2.5rem;
+    --board-control-icon-size: 2.25rem;
+  }
+  body {
+    font-size: 0.6rem;
+  }
+}
+
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -29,9 +80,14 @@ body {
 /* For the flex table wrapper */
 .flex-table {
   display: grid;
-  gap: 10px; /* Adjust the gap between cells as needed */
+  gap: var(--position-cell-spacing) !important;
 }
 
 /* For each cell */
 .flex-table-cell {
+}
+
+.awn-popup-body {
+  background: rgb(var(--background-start-rgb)) !important;
+  border: 1px solid rgb(var(--background-end-rgb));
 }

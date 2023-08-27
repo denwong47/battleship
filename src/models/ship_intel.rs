@@ -16,6 +16,7 @@ pub struct ShipIntel {
     ship_type: ShipType,
     status: ShipStatus,
     damages: usize,
+    remaining: usize,
 }
 
 impl TryFrom<&Ship> for ShipIntel {
@@ -26,6 +27,7 @@ impl TryFrom<&Ship> for ShipIntel {
             ship_type: value.ship_type.clone(),
             status: value.status()?,
             damages: value.damages()?,
+            remaining: value.ship_type.length() - value.damages()?,
         })
     }
 }
