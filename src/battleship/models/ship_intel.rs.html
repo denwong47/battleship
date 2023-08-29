@@ -29,6 +29,8 @@
 <a href="#29" id="29">29</a>
 <a href="#30" id="30">30</a>
 <a href="#31" id="31">31</a>
+<a href="#32" id="32">32</a>
+<a href="#33" id="33">33</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>serde::{Deserialize, Serialize};
 <span class="kw">use </span>uuid::Uuid;
 
@@ -47,6 +49,7 @@
     ship_type: ShipType,
     status: ShipStatus,
     damages: usize,
+    remaining: usize,
 }
 
 <span class="kw">impl </span>TryFrom&lt;<span class="kw-2">&amp;</span>Ship&gt; <span class="kw">for </span>ShipIntel {
@@ -57,6 +60,7 @@
             ship_type: value.ship_type.clone(),
             status: value.status()<span class="question-mark">?</span>,
             damages: value.damages()<span class="question-mark">?</span>,
+            remaining: value.ship_type.length() - value.damages()<span class="question-mark">?</span>,
         })
     }
 }
