@@ -106,7 +106,7 @@ export default function Home() {
             font-light
             text-slate-400
             text-center
-            pb-8
+            pb-12
             blur-[2px]
             hover:blur-none
             transition
@@ -114,6 +114,10 @@ export default function Home() {
             duration-1000
             translate-x-[0.9rem]
             hover:drop-shadow-[0_0_1.4rem_#ffffffff]
+            bg-image-ship-battleship
+            bg-contain
+            bg-no-repeat
+            bg-top
         "
           tooltipText='A pointless battleship game against the computer for demonstration only.'
           tooltipToggle={tooltipToggle}
