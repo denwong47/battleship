@@ -1,3 +1,4 @@
+import React from "react";
 import { ShipIntel } from "./types/shipIntel"
 
 export interface ShipDisplayProps {
