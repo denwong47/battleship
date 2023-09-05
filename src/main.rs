@@ -25,6 +25,23 @@
 //! The game itself serves no purpose and is not necessarily entertaining. The true
 //! purpose is to algorithmically solve the game via the API hooks, which records
 //! statistics that cannot be easily cheated.
+//!
+//! ## Is there a user interface?
+//!
+//! There is; its written in next.js and requires `npm` to run.
+//!
+//! 1. Install `node.js`
+//! 2. In the root folder of this repo, run:
+//!
+//! ```sh
+//! npm install
+//! npm run dev
+//! ```
+//!
+//! The HTTP server will be bound to the same `addr` specified in [`host.json`].
+//! Assuming the host is `localhost`, you can access the interface on `http://localhost:3000`.
+//!
+//! [`host.json`]: `_doc::hostjson`
 
 pub mod app;
 pub mod args;
@@ -32,6 +49,9 @@ pub mod config;
 pub mod error;
 pub mod logger;
 pub mod models;
+
+#[allow(unused_imports)]
+mod _doc;
 
 use crate::error::AppError;
 use clap::Parser;

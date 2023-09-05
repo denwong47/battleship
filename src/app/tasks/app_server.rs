@@ -29,14 +29,14 @@ pub async fn create_app(app_state: AppState) -> Server<()> {
     }
 
     expand_paths!(
+        ("/info", AppStatusHook),
+        ("/list", ListBoardsHook),
         ("/terminate", TerminationHook),
         ("/new", NewBoardHook),
-        ("/drop/:uuid", DropBoardHook),
-        ("/list", ListBoardsHook),
         ("/status/:uuid", BoardStatusHook),
-        ("/strike/:uuid", StrikeHook),
         ("/list_strikes/:uuid", ListStrikesHook),
-        ("/info", AppStatusHook),
+        ("/strike/:uuid", StrikeHook),
+        ("/drop/:uuid", DropBoardHook),
     );
 
     logger::debug("`tide::Server` created...");
