@@ -226,6 +226,107 @@
 <a href="#226" id="226">226</a>
 <a href="#227" id="227">227</a>
 <a href="#228" id="228">228</a>
+<a href="#229" id="229">229</a>
+<a href="#230" id="230">230</a>
+<a href="#231" id="231">231</a>
+<a href="#232" id="232">232</a>
+<a href="#233" id="233">233</a>
+<a href="#234" id="234">234</a>
+<a href="#235" id="235">235</a>
+<a href="#236" id="236">236</a>
+<a href="#237" id="237">237</a>
+<a href="#238" id="238">238</a>
+<a href="#239" id="239">239</a>
+<a href="#240" id="240">240</a>
+<a href="#241" id="241">241</a>
+<a href="#242" id="242">242</a>
+<a href="#243" id="243">243</a>
+<a href="#244" id="244">244</a>
+<a href="#245" id="245">245</a>
+<a href="#246" id="246">246</a>
+<a href="#247" id="247">247</a>
+<a href="#248" id="248">248</a>
+<a href="#249" id="249">249</a>
+<a href="#250" id="250">250</a>
+<a href="#251" id="251">251</a>
+<a href="#252" id="252">252</a>
+<a href="#253" id="253">253</a>
+<a href="#254" id="254">254</a>
+<a href="#255" id="255">255</a>
+<a href="#256" id="256">256</a>
+<a href="#257" id="257">257</a>
+<a href="#258" id="258">258</a>
+<a href="#259" id="259">259</a>
+<a href="#260" id="260">260</a>
+<a href="#261" id="261">261</a>
+<a href="#262" id="262">262</a>
+<a href="#263" id="263">263</a>
+<a href="#264" id="264">264</a>
+<a href="#265" id="265">265</a>
+<a href="#266" id="266">266</a>
+<a href="#267" id="267">267</a>
+<a href="#268" id="268">268</a>
+<a href="#269" id="269">269</a>
+<a href="#270" id="270">270</a>
+<a href="#271" id="271">271</a>
+<a href="#272" id="272">272</a>
+<a href="#273" id="273">273</a>
+<a href="#274" id="274">274</a>
+<a href="#275" id="275">275</a>
+<a href="#276" id="276">276</a>
+<a href="#277" id="277">277</a>
+<a href="#278" id="278">278</a>
+<a href="#279" id="279">279</a>
+<a href="#280" id="280">280</a>
+<a href="#281" id="281">281</a>
+<a href="#282" id="282">282</a>
+<a href="#283" id="283">283</a>
+<a href="#284" id="284">284</a>
+<a href="#285" id="285">285</a>
+<a href="#286" id="286">286</a>
+<a href="#287" id="287">287</a>
+<a href="#288" id="288">288</a>
+<a href="#289" id="289">289</a>
+<a href="#290" id="290">290</a>
+<a href="#291" id="291">291</a>
+<a href="#292" id="292">292</a>
+<a href="#293" id="293">293</a>
+<a href="#294" id="294">294</a>
+<a href="#295" id="295">295</a>
+<a href="#296" id="296">296</a>
+<a href="#297" id="297">297</a>
+<a href="#298" id="298">298</a>
+<a href="#299" id="299">299</a>
+<a href="#300" id="300">300</a>
+<a href="#301" id="301">301</a>
+<a href="#302" id="302">302</a>
+<a href="#303" id="303">303</a>
+<a href="#304" id="304">304</a>
+<a href="#305" id="305">305</a>
+<a href="#306" id="306">306</a>
+<a href="#307" id="307">307</a>
+<a href="#308" id="308">308</a>
+<a href="#309" id="309">309</a>
+<a href="#310" id="310">310</a>
+<a href="#311" id="311">311</a>
+<a href="#312" id="312">312</a>
+<a href="#313" id="313">313</a>
+<a href="#314" id="314">314</a>
+<a href="#315" id="315">315</a>
+<a href="#316" id="316">316</a>
+<a href="#317" id="317">317</a>
+<a href="#318" id="318">318</a>
+<a href="#319" id="319">319</a>
+<a href="#320" id="320">320</a>
+<a href="#321" id="321">321</a>
+<a href="#322" id="322">322</a>
+<a href="#323" id="323">323</a>
+<a href="#324" id="324">324</a>
+<a href="#325" id="325">325</a>
+<a href="#326" id="326">326</a>
+<a href="#327" id="327">327</a>
+<a href="#328" id="328">328</a>
+<a href="#329" id="329">329</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Module containing the main [error] type [`AppError`]
 //!
 //! [error]: `std::error::Error`
@@ -236,67 +337,168 @@
 
 <span class="kw">use crate</span>::{logger, models::traits::AddDefaultHeaders};
 
+<span class="attr">#[allow(unused_imports)]
+</span><span class="kw">use </span><span class="kw">crate</span>::_doc;
+
 <span class="doccomment">/// A collection of all possible errors raised by the app.
 </span><span class="attr">#[derive(Debug, Error)]
 </span><span class="kw">pub enum </span>AppError {
-    <span class="attr">#[error(<span class="string">&quot;A lock for {0} is poisoned; execution cannot continue.&quot;</span>)]
+    <span class="doccomment">/// A [lock] for an object is poisoned; execution cannot continue.
+    ///
+    /// This can occur when a thread [`panic`]s while holding a writable [guard] reference to the [lock].
+    /// 
+    /// This error is irrecoverable; please restart the server.
+    /// 
+    /// ### Status
+    /// `500 INTERNAL SERVER ERROR` 
+    ///
+    /// [lock]: `std::sync::RwLock`
+    /// [guard]: `std::sync::RwLockWriteGuard`
+    </span><span class="attr">#[error(<span class="string">&quot;A lock for {0} is poisoned; execution cannot continue.&quot;</span>)]
     </span>LockPoisoned(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str),
 
-    <span class="attr">#[error(<span class="string">&quot;Configuration not found at {path}: {err}&quot;</span>)]
+    <span class="doccomment">/// [`host.json`] was not found at the specified location.
+    /// 
+    /// ### Status
+    /// `500 INTERNAL SERVER ERROR` 
+    /// 
+    /// [`host.json`]: `_doc::hostjson`
+    </span><span class="attr">#[error(<span class="string">&quot;Configuration not found at {path}: {err}&quot;</span>)]
     </span>ConfigNotReadable { path: String, err: io::Error },
 
-    <span class="attr">#[error(<span class="string">&quot;Cannot parse Configuration file at {path}: {err}&quot;</span>)]
+    <span class="doccomment">/// [`host.json`] contains invalid JSON.
+    /// 
+    /// ### Status
+    /// `500 INTERNAL SERVER ERROR` 
+    /// 
+    /// [`host.json`]: `_doc::hostjson`
+    </span><span class="attr">#[error(<span class="string">&quot;Cannot parse Configuration file at {path}: {err}&quot;</span>)]
     </span>ConfigNotParsable {
         path: String,
         err: serde_json::Error,
     },
 
-    <span class="attr">#[error(<span class="string">&quot;This feature is only enabled for debug build.&quot;</span>)]
+    <span class="doccomment">/// The feature requested is only enabled in debug mode.
+    /// 
+    /// ### Status
+    /// `406 NOT ACCEPTABLE` 
+    /// 
+    /// [`host.json`]: `_doc::hostjson`
+    </span><span class="attr">#[error(<span class="string">&quot;This feature is only enabled for debug build.&quot;</span>)]
     </span>DebugOnlyFeature,
 
-    <span class="attr">#[error(<span class="string">&quot;App at {addr} failed to start up: {err}&quot;</span>)]
+    <span class="doccomment">/// The server failed to start. This is typically caused by the OS preventing the
+    /// host from starting up due to port number clash etc.
+    /// 
+    /// ### Status
+    /// `500 INTERNAL SERVER ERROR` 
+    </span><span class="attr">#[error(<span class="string">&quot;App at {addr} failed to start up: {err}&quot;</span>)]
     </span>ServerStartUpError { addr: String, err: io::Error },
 
-    <span class="attr">#[error(<span class="string">&quot;HTTP host encountered an error: {0:?}&quot;</span>)]
+    <span class="doccomment">/// [`tide`] encountered an error. The error message from [`tide`] will be displayed.
+    /// 
+    /// ### Status
+    /// Varies. The [`tide::Error`] status code is used.
+    </span><span class="attr">#[error(<span class="string">&quot;HTTP host encountered an error: {0:?}&quot;</span>)]
     </span>TideError(tide::Error),
 
-    <span class="attr">#[error(<span class="string">&quot;Invalid parameters passed: {0:?}&quot;</span>)]
+    <span class="doccomment">/// A query parameter provided is invalid.
+    /// 
+    /// ### Status
+    /// `400 BAD REQUEST`
+    </span><span class="attr">#[error(<span class="string">&quot;Invalid parameters passed: {0:?}&quot;</span>)]
     </span>InvalidParameters(tide::Error),
 
-    <span class="attr">#[error(<span class="string">&quot;Missing parameters in query: {0:?}&quot;</span>)]
+    <span class="doccomment">/// A mandatory query parameter is missing.
+    /// 
+    /// ### Status
+    /// `404 NOT FOUND`
+    </span><span class="attr">#[error(<span class="string">&quot;Missing parameters in query: {0:?}&quot;</span>)]
     </span>MissingParameters(Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attr">#[error(<span class="string">&quot;Cannot listen to Ctrl-C calls: {message}&quot;</span>)]
+    <span class="doccomment">/// The OS prevented the host from listening to `Ctrl-C` termination commands.
+    /// 
+    /// ### Status
+    /// `410 GONE`
+    </span><span class="attr">#[error(<span class="string">&quot;Cannot listen to Ctrl-C calls: {message}&quot;</span>)]
     </span>CtrlCError { message: String },
 
-    <span class="attr">#[error(<span class="string">&quot;JSON Serialization Failed.&quot;</span>)]
+    <span class="doccomment">/// A return value had been computed, but the object failed to serialize.
+    /// 
+    /// ### Status
+    /// `500 INTERNAL SERVER ERROR`
+    </span><span class="attr">#[error(<span class="string">&quot;JSON Serialization Failed.&quot;</span>)]
     </span>JSONSerializationError,
 
-    <span class="attr">#[error(<span class="string">&quot;Board {uuid} duplicated.&quot;</span>)]
+    <span class="doccomment">/// The host is attempting to create a board with an existing [`Uuid`].
+    /// 
+    /// This is an improbable cause of error; if you are unlucky enough to encounter
+    /// this, simply retry the request.
+    /// 
+    /// ### Status
+    /// `500 INTERNAL SERVER ERROR`
+    </span><span class="attr">#[error(<span class="string">&quot;Board {uuid} duplicated.&quot;</span>)]
     </span>DuplicatedBoard { uuid: Uuid },
 
-    <span class="attr">#[error(<span class="string">&quot;Board {uuid} is missing.&quot;</span>)]
+    <span class="doccomment">/// The provided [`Uuid`] does not match any existing boards.
+    /// 
+    /// ### Status
+    /// `404 NOT FOUND`
+    </span><span class="attr">#[error(<span class="string">&quot;Board {uuid} is missing.&quot;</span>)]
     </span>MissingBoard { uuid: Uuid },
 
-    <span class="attr">#[error(<span class="string">&quot;{uuid_str} is not a valid Board UUID.&quot;</span>)]
+    <span class="doccomment">/// The provided baord ID is not a well formatted [`Uuid`].
+    /// 
+    /// ### Status
+    /// `400 BAD REQUEST`
+    </span><span class="attr">#[error(<span class="string">&quot;{uuid_str} is not a valid Board UUID.&quot;</span>)]
     </span>InvalidBoard { uuid_str: String },
 
-    <span class="attr">#[error(<span class="string">&quot;Board {uuid} is frozen - the game has ended.&quot;</span>)]
+    <span class="doccomment">/// The target board cannot be modified, as the game has already ended.
+    /// 
+    /// ### Status
+    /// `406 NOT ACCEPTABLE`
+    </span><span class="attr">#[error(<span class="string">&quot;Board {uuid} is frozen - the game has ended.&quot;</span>)]
     </span>FrozenBoard { uuid: Uuid },
 
-    <span class="attr">#[error(<span class="string">&quot;A remote host requested a termination with error: {message}&quot;</span>)]
+    <span class="doccomment">/// A termination request had been sent with an error message. The host will now
+    /// terminate with the message as its error.
+    /// 
+    /// ### Status
+    /// `410 GONE`
+    </span><span class="attr">#[error(<span class="string">&quot;A remote host requested a termination with error: {message}&quot;</span>)]
     </span>RemoteRequestedTermination { message: String },
 
-    <span class="attr">#[error(<span class="string">&quot;Position ({x}, {y}) is already occupied.&quot;</span>)]
+    <span class="doccomment">/// A requested position is not available.
+    /// 
+    /// ### Status
+    /// `406 NOT ACCEPTABLE`
+    </span><span class="attr">#[error(<span class="string">&quot;Position ({x}, {y}) is already occupied.&quot;</span>)]
     </span>PositionOccupied { x: usize, y: usize },
 
-    <span class="attr">#[error(<span class="string">&quot;Coordinates ({x}, {y}) is out of bounds.&quot;</span>)]
+    <span class="doccomment">/// A requested position is out of the bounds of the board. Check the board size
+    /// before retrying.
+    /// 
+    /// ### Status
+    /// `406 NOT ACCEPTABLE`
+    </span><span class="attr">#[error(<span class="string">&quot;Coordinates ({x}, {y}) is out of bounds.&quot;</span>)]
     </span>CoordinatesOutOfBounds { x: usize, y: usize },
 
-    <span class="attr">#[error(<span class="string">&quot;Nothing to report: strike had not occurred.&quot;</span>)]
+    <span class="doccomment">/// A strike report had been requested on an empty position that had not been struck
+    /// before.
+    /// 
+    /// *Internal error only; should be unreachable.*
+    /// 
+    /// ### Status
+    /// `500 INTERNAL SERVER ERROR`
+    </span><span class="attr">#[error(<span class="string">&quot;Nothing to report: strike had not occurred.&quot;</span>)]
     </span>StrikeReportRequestedOnEmpty,
 
-    <span class="attr">#[error(<span class="string">&quot;unknown error occurred: {context}&quot;</span>)]
+    <span class="doccomment">/// An unknown error had occurred. Refer to the context for more information.
+    /// 
+    /// ### Status
+    /// `500 INTERNAL SERVER ERROR`
+    </span><span class="attr">#[error(<span class="string">&quot;unknown error occurred: {context}&quot;</span>)]
     </span>Unknown { context: String },
 }
 

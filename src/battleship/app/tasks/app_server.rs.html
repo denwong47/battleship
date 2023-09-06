@@ -73,14 +73,14 @@
     }
 
     <span class="macro">expand_paths!</span>(
+        (<span class="string">&quot;/info&quot;</span>, AppStatusHook),
+        (<span class="string">&quot;/list&quot;</span>, ListBoardsHook),
         (<span class="string">&quot;/terminate&quot;</span>, TerminationHook),
         (<span class="string">&quot;/new&quot;</span>, NewBoardHook),
-        (<span class="string">&quot;/drop/:uuid&quot;</span>, DropBoardHook),
-        (<span class="string">&quot;/list&quot;</span>, ListBoardsHook),
         (<span class="string">&quot;/status/:uuid&quot;</span>, BoardStatusHook),
-        (<span class="string">&quot;/strike/:uuid&quot;</span>, StrikeHook),
         (<span class="string">&quot;/list_strikes/:uuid&quot;</span>, ListStrikesHook),
-        (<span class="string">&quot;/info&quot;</span>, AppStatusHook),
+        (<span class="string">&quot;/strike/:uuid&quot;</span>, StrikeHook),
+        (<span class="string">&quot;/drop/:uuid&quot;</span>, DropBoardHook),
     );
 
     logger::debug(<span class="string">&quot;`tide::Server` created...&quot;</span>);
