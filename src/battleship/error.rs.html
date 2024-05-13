@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/error.rs`."><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="battleship" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/error.rs`."><title>error.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="battleship" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../battleship/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -346,163 +348,163 @@
     <span class="doccomment">/// A [lock] for an object is poisoned; execution cannot continue.
     ///
     /// This can occur when a thread [`panic`]s while holding a writable [guard] reference to the [lock].
-    /// 
+    ///
     /// This error is irrecoverable; please restart the server.
-    /// 
+    ///
     /// ### Status
-    /// `500 INTERNAL SERVER ERROR` 
+    /// `500 INTERNAL SERVER ERROR`
     ///
     /// [lock]: `std::sync::RwLock`
     /// [guard]: `std::sync::RwLockWriteGuard`
-    </span><span class="attr">#[error(<span class="string">&quot;A lock for {0} is poisoned; execution cannot continue.&quot;</span>)]
-    </span>LockPoisoned(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str),
+    </span><span class="attr">#[error(<span class="string">"A lock for {0} is poisoned; execution cannot continue."</span>)]
+    </span>LockPoisoned(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str),
 
     <span class="doccomment">/// [`host.json`] was not found at the specified location.
-    /// 
+    ///
     /// ### Status
-    /// `500 INTERNAL SERVER ERROR` 
-    /// 
+    /// `500 INTERNAL SERVER ERROR`
+    ///
     /// [`host.json`]: `_doc::hostjson`
-    </span><span class="attr">#[error(<span class="string">&quot;Configuration not found at {path}: {err}&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Configuration not found at {path}: {err}"</span>)]
     </span>ConfigNotReadable { path: String, err: io::Error },
 
     <span class="doccomment">/// [`host.json`] contains invalid JSON.
-    /// 
+    ///
     /// ### Status
-    /// `500 INTERNAL SERVER ERROR` 
-    /// 
+    /// `500 INTERNAL SERVER ERROR`
+    ///
     /// [`host.json`]: `_doc::hostjson`
-    </span><span class="attr">#[error(<span class="string">&quot;Cannot parse Configuration file at {path}: {err}&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Cannot parse Configuration file at {path}: {err}"</span>)]
     </span>ConfigNotParsable {
         path: String,
         err: serde_json::Error,
     },
 
     <span class="doccomment">/// The feature requested is only enabled in debug mode.
-    /// 
+    ///
     /// ### Status
-    /// `406 NOT ACCEPTABLE` 
-    /// 
+    /// `406 NOT ACCEPTABLE`
+    ///
     /// [`host.json`]: `_doc::hostjson`
-    </span><span class="attr">#[error(<span class="string">&quot;This feature is only enabled for debug build.&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"This feature is only enabled for debug build."</span>)]
     </span>DebugOnlyFeature,
 
     <span class="doccomment">/// The server failed to start. This is typically caused by the OS preventing the
     /// host from starting up due to port number clash etc.
-    /// 
+    ///
     /// ### Status
-    /// `500 INTERNAL SERVER ERROR` 
-    </span><span class="attr">#[error(<span class="string">&quot;App at {addr} failed to start up: {err}&quot;</span>)]
+    /// `500 INTERNAL SERVER ERROR`
+    </span><span class="attr">#[error(<span class="string">"App at {addr} failed to start up: {err}"</span>)]
     </span>ServerStartUpError { addr: String, err: io::Error },
 
     <span class="doccomment">/// [`tide`] encountered an error. The error message from [`tide`] will be displayed.
-    /// 
+    ///
     /// ### Status
     /// Varies. The [`tide::Error`] status code is used.
-    </span><span class="attr">#[error(<span class="string">&quot;HTTP host encountered an error: {0:?}&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"HTTP host encountered an error: {0:?}"</span>)]
     </span>TideError(tide::Error),
 
     <span class="doccomment">/// A query parameter provided is invalid.
-    /// 
+    ///
     /// ### Status
     /// `400 BAD REQUEST`
-    </span><span class="attr">#[error(<span class="string">&quot;Invalid parameters passed: {0:?}&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Invalid parameters passed: {0:?}"</span>)]
     </span>InvalidParameters(tide::Error),
 
     <span class="doccomment">/// A mandatory query parameter is missing.
-    /// 
+    ///
     /// ### Status
     /// `404 NOT FOUND`
-    </span><span class="attr">#[error(<span class="string">&quot;Missing parameters in query: {0:?}&quot;</span>)]
-    </span>MissingParameters(Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
+    </span><span class="attr">#[error(<span class="string">"Missing parameters in query: {0:?}"</span>)]
+    </span>MissingParameters(Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt;),
 
     <span class="doccomment">/// The OS prevented the host from listening to `Ctrl-C` termination commands.
-    /// 
+    ///
     /// ### Status
     /// `410 GONE`
-    </span><span class="attr">#[error(<span class="string">&quot;Cannot listen to Ctrl-C calls: {message}&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Cannot listen to Ctrl-C calls: {message}"</span>)]
     </span>CtrlCError { message: String },
 
     <span class="doccomment">/// A return value had been computed, but the object failed to serialize.
-    /// 
+    ///
     /// ### Status
     /// `500 INTERNAL SERVER ERROR`
-    </span><span class="attr">#[error(<span class="string">&quot;JSON Serialization Failed.&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"JSON Serialization Failed."</span>)]
     </span>JSONSerializationError,
 
     <span class="doccomment">/// The host is attempting to create a board with an existing [`Uuid`].
-    /// 
+    ///
     /// This is an improbable cause of error; if you are unlucky enough to encounter
     /// this, simply retry the request.
-    /// 
+    ///
     /// ### Status
     /// `500 INTERNAL SERVER ERROR`
-    </span><span class="attr">#[error(<span class="string">&quot;Board {uuid} duplicated.&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Board {uuid} duplicated."</span>)]
     </span>DuplicatedBoard { uuid: Uuid },
 
     <span class="doccomment">/// The provided [`Uuid`] does not match any existing boards.
-    /// 
+    ///
     /// ### Status
     /// `404 NOT FOUND`
-    </span><span class="attr">#[error(<span class="string">&quot;Board {uuid} is missing.&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Board {uuid} is missing."</span>)]
     </span>MissingBoard { uuid: Uuid },
 
     <span class="doccomment">/// The provided baord ID is not a well formatted [`Uuid`].
-    /// 
+    ///
     /// ### Status
     /// `400 BAD REQUEST`
-    </span><span class="attr">#[error(<span class="string">&quot;{uuid_str} is not a valid Board UUID.&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"{uuid_str} is not a valid Board UUID."</span>)]
     </span>InvalidBoard { uuid_str: String },
 
     <span class="doccomment">/// The target board cannot be modified, as the game has already ended.
-    /// 
+    ///
     /// ### Status
     /// `406 NOT ACCEPTABLE`
-    </span><span class="attr">#[error(<span class="string">&quot;Board {uuid} is frozen - the game has ended.&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Board {uuid} is frozen - the game has ended."</span>)]
     </span>FrozenBoard { uuid: Uuid },
 
     <span class="doccomment">/// A termination request had been sent with an error message. The host will now
     /// terminate with the message as its error.
-    /// 
+    ///
     /// ### Status
     /// `410 GONE`
-    </span><span class="attr">#[error(<span class="string">&quot;A remote host requested a termination with error: {message}&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"A remote host requested a termination with error: {message}"</span>)]
     </span>RemoteRequestedTermination { message: String },
 
     <span class="doccomment">/// A requested position is not available.
-    /// 
+    ///
     /// ### Status
     /// `406 NOT ACCEPTABLE`
-    </span><span class="attr">#[error(<span class="string">&quot;Position ({x}, {y}) is already occupied.&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Position ({x}, {y}) is already occupied."</span>)]
     </span>PositionOccupied { x: usize, y: usize },
 
     <span class="doccomment">/// A requested position is out of the bounds of the board. Check the board size
     /// before retrying.
-    /// 
+    ///
     /// ### Status
     /// `406 NOT ACCEPTABLE`
-    </span><span class="attr">#[error(<span class="string">&quot;Coordinates ({x}, {y}) is out of bounds.&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Coordinates ({x}, {y}) is out of bounds."</span>)]
     </span>CoordinatesOutOfBounds { x: usize, y: usize },
 
     <span class="doccomment">/// A strike report had been requested on an empty position that had not been struck
     /// before.
-    /// 
+    ///
     /// *Internal error only; should be unreachable.*
-    /// 
+    ///
     /// ### Status
     /// `500 INTERNAL SERVER ERROR`
-    </span><span class="attr">#[error(<span class="string">&quot;Nothing to report: strike had not occurred.&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Nothing to report: strike had not occurred."</span>)]
     </span>StrikeReportRequestedOnEmpty,
 
     <span class="doccomment">/// An unknown error had occurred. Refer to the context for more information.
-    /// 
+    ///
     /// ### Status
     /// `500 INTERNAL SERVER ERROR`
-    </span><span class="attr">#[error(<span class="string">&quot;unknown error occurred: {context}&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"unknown error occurred: {context}"</span>)]
     </span>Unknown { context: String },
 }
 
-<span class="macro">macro_rules! </span>expand_variants {
+<span class="macro">macro_rules!</span> expand_variants {
     (
         $((
             <span class="macro-nonterminal">$variant</span>:ident,
@@ -519,7 +521,7 @@
                     $(
                         <span class="macro">stringify!</span>(<span class="macro-nonterminal">$variant</span>) =&gt; <span class="macro-nonterminal">$status</span>,
                     )*
-                    <span class="string">&quot;TideError&quot; </span>=&gt; <span class="kw">if let </span><span class="self">Self</span>::TideError(err) = <span class="self">self </span>{
+                    <span class="string">"TideError" </span>=&gt; <span class="kw">if let </span><span class="self">Self</span>::TideError(err) = <span class="self">self </span>{
                         err.status()
                     } <span class="kw">else </span>{
                         <span class="macro">unreachable!</span>()
@@ -530,10 +532,10 @@
 
             <span class="doccomment">/// Get the name of this error.
             </span><span class="kw">pub fn </span>name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
-                [<span class="string">&quot; &quot;</span>, <span class="string">&quot;(&quot;</span>]
+                [<span class="string">" "</span>, <span class="string">"("</span>]
                 .into_iter()
                 .fold(
-                    <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>),
+                    <span class="macro">format!</span>(<span class="string">"{:?}"</span>, <span class="self">self</span>),
                     |name, sep| {
                         name
                         .split_once(sep)
@@ -578,13 +580,13 @@
         )
         .body(tide::Body::from_json(
             <span class="kw-2">&amp;</span><span class="macro">serde_json::json!</span>({
-                <span class="string">&quot;error&quot;</span>: value.name(),
-                <span class="string">&quot;message&quot;</span>: value.to_string(),
+                <span class="string">"error"</span>: value.name(),
+                <span class="string">"message"</span>: value.to_string(),
             })
         ).unwrap_or_else(|<span class="kw">_</span>| {
             logger::error(
                 <span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                    <span class="string">&quot;{name} has occurred, but JSON serialization failed. The original error was {value:?}.&quot;</span>,
+                    <span class="string">"{name} has occurred, but JSON serialization failed. The original error was {value:?}."</span>,
                     name=value.name(),
                     value=value,
                 )
@@ -592,8 +594,8 @@
 
             tide::Body::from_json(
                 <span class="kw-2">&amp;</span><span class="macro">serde_json::json!</span>({
-                    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;JSONSerializationError&quot;</span>,
-                    <span class="string">&quot;message&quot;</span>: <span class="macro">format!</span>(<span class="string">&quot;{name} has occurred, but the error cannot be serialized. Check server logs.&quot;</span>, name=value.name()),
+                    <span class="string">"error"</span>: <span class="string">"JSONSerializationError"</span>,
+                    <span class="string">"message"</span>: <span class="macro">format!</span>(<span class="string">"{name} has occurred, but the error cannot be serialized. Check server logs."</span>, name=value.name()),
                 })
             )
             .unwrap()
@@ -612,7 +614,7 @@
 </span><span class="kw">mod </span>app_error_to_response {
     <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="macro">macro_rules! </span>expand_tests {
+    <span class="macro">macro_rules!</span> expand_tests {
         (
             $((
                 <span class="macro-nonterminal">$name</span>:ident,
@@ -634,7 +636,7 @@
     <span class="macro">expand_tests!</span>(
         (
             lock_poisoned,
-            AppError::LockPoisoned(<span class="string">&quot;&quot;</span>),
+            AppError::LockPoisoned(<span class="string">""</span>),
             tide::StatusCode::InternalServerError
         ),
         (
@@ -646,12 +648,12 @@
         ),
         (
             invalid_parameters,
-            AppError::InvalidParameters(tide::Error::from_str(tide::StatusCode::Ok, <span class="string">&quot;Ignored&quot;</span>)),
+            AppError::InvalidParameters(tide::Error::from_str(tide::StatusCode::Ok, <span class="string">"Ignored"</span>)),
             tide::StatusCode::BadRequest
         ),
         (
             tide_error,
-            AppError::TideError(tide::Error::from_str(tide::StatusCode::ImATeapot, <span class="string">&quot;&quot;</span>)),
+            AppError::TideError(tide::Error::from_str(tide::StatusCode::ImATeapot, <span class="string">""</span>)),
             tide::StatusCode::ImATeapot
         )
     );

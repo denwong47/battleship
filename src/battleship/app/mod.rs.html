@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/app/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="battleship" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/app/mod.rs`."><title>mod.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="battleship" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../battleship/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -493,15 +495,15 @@
 //!
 //! ```
 //! {
-//!     &quot;error&quot;: &quot;TypeOfError&quot;,
-//!     &quot;message&quot;: &quot;A message explaining the error.&quot;
+//!     "error": "TypeOfError",
+//!     "message": "A message explaining the error."
 //! }
 //! ```
 //!
 //! A non `200 OK` status will be returned alongside such a message.
 //! Consult [`AppError`] for a complete list of possible error types and their
 //! corresponding status codes.
-//! 
+//!
 
 //! # `/info`
 //!
@@ -528,16 +530,16 @@
 //!
 //! ```
 //! {
-//!   &quot;page_visits&quot;: {
-//!     &quot;/drop/55a8e295-909c-4054-a18f-87ef6002e343&quot;: 1,
-//!     &quot;/info&quot;: 2,
-//!     &quot;/new&quot;: 2,
-//!     &quot;/status/55a8e295-909c-4054-a18f-87ef6002e343&quot;: 1,
-//!     &quot;/status/v&quot;: 1,
-//!     &quot;/strike/55a8e295-909c-4054-a18f-87ef6002e343&quot;: 6
+//!   "page_visits": {
+//!     "/drop/55a8e295-909c-4054-a18f-87ef6002e343": 1,
+//!     "/info": 2,
+//!     "/new": 2,
+//!     "/status/55a8e295-909c-4054-a18f-87ef6002e343": 1,
+//!     "/status/v": 1,
+//!     "/strike/55a8e295-909c-4054-a18f-87ef6002e343": 6
 //!   },
-//!   &quot;simulated_failure_factor&quot;: 32,
-//!   &quot;start_time&quot;: &quot;2023-08-01T21:09:31.404040&quot;
+//!   "simulated_failure_factor": 32,
+//!   "start_time": "2023-08-01T21:09:31.404040"
 //! }
 //! ```
 //!
@@ -583,17 +585,17 @@
 //!
 //! ```
 //! {
-//!     &quot;action&quot;: &quot;termination&quot;,
-//!     &quot;success&quot;: true
+//!     "action": "termination",
+//!     "success": true
 //! }
 //! ```
 
 //! # `/new`
 //!
 //! **Create a new game with the stated parameters.**
-//! 
+//!
 //! Upon successful creation, returns the [board status] of the newly crated board.
-//! 
+//!
 //! Use the key `uuid` to get the [`Board`] identifier.
 //!
 //! #### Syntax
@@ -606,7 +608,7 @@
 //! - `width`: board width, default `10`,
 //! - `height`: board height, default `10`, and
 //! - `ship_count`: number of ships to aim to create.
-//!   
+//!
 //!   There is no guarantee that
 //!   this amount of ships will be present in the resultant board - this was simply
 //!   the aimed amount. Each ship creation is tried for `32` times before giving up.
@@ -616,44 +618,44 @@
 //!
 //! ```
 //! {
-//!   &quot;action&quot;: &quot;createGame&quot;,
-//!   &quot;game&quot;: {
-//!     &quot;active&quot;: true,
-//!     &quot;elapsed&quot;: 0.000089,
-//!     &quot;ship_intel&quot;: [
+//!   "action": "createGame",
+//!   "game": {
+//!     "active": true,
+//!     "elapsed": 0.000089,
+//!     "ship_intel": [
 //!       {
-//!         &quot;damages&quot;: 0,
-//!         &quot;ship_type&quot;: &quot;Battleship&quot;,
-//!         &quot;status&quot;: &quot;Undiscovered&quot;,
-//!         &quot;uuid&quot;: &quot;593f093a-620b-4bf4-ba31-e8ee5b4d9de5&quot;
+//!         "damages": 0,
+//!         "ship_type": "Battleship",
+//!         "status": "Undiscovered",
+//!         "uuid": "593f093a-620b-4bf4-ba31-e8ee5b4d9de5"
 //!       },
 //!       {
-//!         &quot;damages&quot;: 0,
-//!         &quot;ship_type&quot;: &quot;Cruiser&quot;,
-//!         &quot;status&quot;: &quot;Undiscovered&quot;,
-//!         &quot;uuid&quot;: &quot;01e96180-2910-4f09-930d-f75bafcacf53&quot;
+//!         "damages": 0,
+//!         "ship_type": "Cruiser",
+//!         "status": "Undiscovered",
+//!         "uuid": "01e96180-2910-4f09-930d-f75bafcacf53"
 //!       },
 //!       {
-//!         &quot;damages&quot;: 0,
-//!         &quot;ship_type&quot;: &quot;AircraftCarrier&quot;,
-//!         &quot;status&quot;: &quot;Undiscovered&quot;,
-//!         &quot;uuid&quot;: &quot;919c5d58-aabf-481e-ae7f-3f601816f629&quot;
+//!         "damages": 0,
+//!         "ship_type": "AircraftCarrier",
+//!         "status": "Undiscovered",
+//!         "uuid": "919c5d58-aabf-481e-ae7f-3f601816f629"
 //!       },
 //!       {
-//!         &quot;damages&quot;: 0,
-//!         &quot;ship_type&quot;: &quot;Battleship&quot;,
-//!         &quot;status&quot;: &quot;Undiscovered&quot;,
-//!         &quot;uuid&quot;: &quot;4d22ea2a-5ec3-4117-a8e5-ed6ecae8efcf&quot;
+//!         "damages": 0,
+//!         "ship_type": "Battleship",
+//!         "status": "Undiscovered",
+//!         "uuid": "4d22ea2a-5ec3-4117-a8e5-ed6ecae8efcf"
 //!       }
 //!     ],
-//!     &quot;size&quot;: [
+//!     "size": [
 //!       8,
 //!       6
 //!     ],
-//!     &quot;strikes&quot;: 0,
-//!     &quot;uuid&quot;: &quot;9e3bfde9-4248-49fd-8550-3e773c3deca6&quot;
+//!     "strikes": 0,
+//!     "uuid": "9e3bfde9-4248-49fd-8550-3e773c3deca6"
 //!   },
-//!   &quot;success&quot;: true
+//!   "success": true
 //! }
 //! ```
 //!
@@ -661,9 +663,9 @@
 //! # `/status/&lt;uuid&gt;`
 //!
 //! **Return the [board status] without giving away any secrets of the game.**
-//! 
+//!
 //! The following keys are returned:
-//! 
+//!
 //! - `active` - `false` if the game is finished; otherwise `true`.
 //! - `elapsed` - seconds since the game has started.
 //! - `ship_intel` - an array of [ship intelligence] objects indicating what ships are
@@ -671,11 +673,11 @@
 //! - `size` - an array of size `2` indicating the board size: `[width: usize, height: usize]`
 //! - `strikes` - number of strikes that had occurred.
 //! - `uuid` - the unique identifier of the board.
-//! 
+//!
 //! #### Parameters
 //!
 //! This endpoint does not accept parameters.
-//! 
+//!
 //! #### Syntax
 //!
 //! ```text
@@ -686,40 +688,40 @@
 //!
 //! ```
 //! {
-//!   &quot;active&quot;: true,
-//!   &quot;elapsed&quot;: 991.084999,
-//!   &quot;ship_intel&quot;: [
+//!   "active": true,
+//!   "elapsed": 991.084999,
+//!   "ship_intel": [
 //!     {
-//!       &quot;damages&quot;: 0,
-//!       &quot;ship_type&quot;: &quot;Battleship&quot;,
-//!       &quot;status&quot;: &quot;Undiscovered&quot;,
-//!       &quot;uuid&quot;: &quot;593f093a-620b-4bf4-ba31-e8ee5b4d9de5&quot;
+//!       "damages": 0,
+//!       "ship_type": "Battleship",
+//!       "status": "Undiscovered",
+//!       "uuid": "593f093a-620b-4bf4-ba31-e8ee5b4d9de5"
 //!     },
 //!     {
-//!       &quot;damages&quot;: 0,
-//!       &quot;ship_type&quot;: &quot;Cruiser&quot;,
-//!       &quot;status&quot;: &quot;Undiscovered&quot;,
-//!       &quot;uuid&quot;: &quot;01e96180-2910-4f09-930d-f75bafcacf53&quot;
+//!       "damages": 0,
+//!       "ship_type": "Cruiser",
+//!       "status": "Undiscovered",
+//!       "uuid": "01e96180-2910-4f09-930d-f75bafcacf53"
 //!     },
 //!     {
-//!       &quot;damages&quot;: 0,
-//!       &quot;ship_type&quot;: &quot;AircraftCarrier&quot;,
-//!       &quot;status&quot;: &quot;Undiscovered&quot;,
-//!       &quot;uuid&quot;: &quot;919c5d58-aabf-481e-ae7f-3f601816f629&quot;
+//!       "damages": 0,
+//!       "ship_type": "AircraftCarrier",
+//!       "status": "Undiscovered",
+//!       "uuid": "919c5d58-aabf-481e-ae7f-3f601816f629"
 //!     },
 //!     {
-//!       &quot;damages&quot;: 0,
-//!       &quot;ship_type&quot;: &quot;Battleship&quot;,
-//!       &quot;status&quot;: &quot;Undiscovered&quot;,
-//!       &quot;uuid&quot;: &quot;4d22ea2a-5ec3-4117-a8e5-ed6ecae8efcf&quot;
+//!       "damages": 0,
+//!       "ship_type": "Battleship",
+//!       "status": "Undiscovered",
+//!       "uuid": "4d22ea2a-5ec3-4117-a8e5-ed6ecae8efcf"
 //!     }
 //!   ],
-//!   &quot;size&quot;: [
+//!   "size": [
 //!     8,
 //!     6
 //!   ],
-//!   &quot;strikes&quot;: 0,
-//!   &quot;uuid&quot;: &quot;9e3bfde9-4248-49fd-8550-3e773c3deca6&quot;
+//!   "strikes": 0,
+//!   "uuid": "9e3bfde9-4248-49fd-8550-3e773c3deca6"
 //! }
 //! ```
 
@@ -727,7 +729,7 @@
 //!
 //! **List all the strikes that had occurred on this board so far.**
 //!
-//! This is not an accurate &quot;replay&quot; of all the [`Strike`]s. It differs by two ways:
+//! This is not an accurate "replay" of all the [`Strike`]s. It differs by two ways:
 //!
 //! - the [`ShipIntel`] will always reflect the current state of the ship, not when the
 //!   [`Strike`] occurred.
@@ -763,41 +765,41 @@
 //!
 //!   ```
 //!   {
-//!     &quot;coordinates&quot;: {
-//!       &quot;x&quot;: 12,
-//!       &quot;y&quot;: 4
+//!     "coordinates": {
+//!       "x": 12,
+//!       "y": 4
 //!     },
-//!     &quot;hit&quot;: false,
-//!     &quot;intel&quot;: null,
-//!     &quot;ships_remaining&quot;: 7,
-//!     &quot;uuid&quot;: &quot;281834dc-a688-45a2-ba72-311a757cc0ca&quot;
+//!     "hit": false,
+//!     "intel": null,
+//!     "ships_remaining": 7,
+//!     "uuid": "281834dc-a688-45a2-ba72-311a757cc0ca"
 //!   }
 //!   ```
 //! - Hit:
 //!
 //!   ```
 //!   {
-//!     &quot;coordinates&quot;: {
-//!       &quot;x&quot;: 7,
-//!       &quot;y&quot;: 9
+//!     "coordinates": {
+//!       "x": 7,
+//!       "y": 9
 //!     },
-//!     &quot;hit&quot;: true,
-//!     &quot;intel&quot;: {
-//!       &quot;damages&quot;: 1,
-//!       &quot;ship_type&quot;: &quot;Battleship&quot;,
-//!       &quot;status&quot;: &quot;Discovered&quot;,
-//!       &quot;uuid&quot;: &quot;91efacf4-f97d-4478-b1aa-a7df6d2534f7&quot;
+//!     "hit": true,
+//!     "intel": {
+//!       "damages": 1,
+//!       "ship_type": "Battleship",
+//!       "status": "Discovered",
+//!       "uuid": "91efacf4-f97d-4478-b1aa-a7df6d2534f7"
 //!     },
-//!     &quot;ships_remaining&quot;: 7,
-//!     &quot;uuid&quot;: &quot;af7d69e9-1809-4d1e-97aa-d76ce3fa303e&quot;
+//!     "ships_remaining": 7,
+//!     "uuid": "af7d69e9-1809-4d1e-97aa-d76ce3fa303e"
 //!   }
 //!   ```
 //! - Coordinates out of bounds:
 //!
 //!   ```
 //!   {
-//!     &quot;error&quot;: &quot;CoordinatesOutOfBounds&quot;,
-//!     &quot;message&quot;: &quot;Coordinates (7, 16) is out of bounds.&quot;
+//!     "error": "CoordinatesOutOfBounds",
+//!     "message": "Coordinates (7, 16) is out of bounds."
 //!   }
 //!   ```
 //!
@@ -818,61 +820,61 @@
 //!
 //! ```
 //! {
-//!   &quot;frozen&quot;: false,
-//!   &quot;position_index&quot;: {
+//!   "frozen": false,
+//!   "position_index": {
 //!     ...
 //!   },
-//!   &quot;ships&quot;: [
+//!   "ships": [
 //!     {
-//!       &quot;coordinates&quot;: {
-//!         &quot;x&quot;: 1,
-//!         &quot;y&quot;: 2
+//!       "coordinates": {
+//!         "x": 1,
+//!         "y": 2
 //!       },
-//!       &quot;orientation&quot;: &quot;Down&quot;,
-//!       &quot;ship_type&quot;: &quot;Cruiser&quot;,
-//!       &quot;strikes&quot;: [
+//!       "orientation": "Down",
+//!       "ship_type": "Cruiser",
+//!       "strikes": [
 //!         null,
 //!         null,
 //!         null
 //!       ],
-//!       &quot;uuid&quot;: &quot;c79d876c-2778-4aca-ac6d-f643b14e2b14&quot;
+//!       "uuid": "c79d876c-2778-4aca-ac6d-f643b14e2b14"
 //!     },
 //!     {
-//!       &quot;coordinates&quot;: {
-//!         &quot;x&quot;: 0,
-//!         &quot;y&quot;: 1
+//!       "coordinates": {
+//!         "x": 0,
+//!         "y": 1
 //!       },
-//!       &quot;orientation&quot;: &quot;Right&quot;,
-//!       &quot;ship_type&quot;: &quot;Submarine&quot;,
-//!       &quot;strikes&quot;: [
+//!       "orientation": "Right",
+//!       "ship_type": "Submarine",
+//!       "strikes": [
 //!         null,
 //!         null,
 //!         null
 //!       ],
-//!       &quot;uuid&quot;: &quot;150024d8-53c3-4b58-9e13-d11380b47885&quot;
+//!       "uuid": "150024d8-53c3-4b58-9e13-d11380b47885"
 //!     },
 //!     {
-//!       &quot;coordinates&quot;: {
-//!         &quot;x&quot;: 2,
-//!         &quot;y&quot;: 2
+//!       "coordinates": {
+//!         "x": 2,
+//!         "y": 2
 //!       },
-//!       &quot;orientation&quot;: &quot;Down&quot;,
-//!       &quot;ship_type&quot;: &quot;Cruiser&quot;,
-//!       &quot;strikes&quot;: [
+//!       "orientation": "Down",
+//!       "ship_type": "Cruiser",
+//!       "strikes": [
 //!         null,
 //!         null,
 //!         null
 //!       ],
-//!       &quot;uuid&quot;: &quot;f34f6cd3-e9f7-4b4a-b448-eee830941fc4&quot;
+//!       "uuid": "f34f6cd3-e9f7-4b4a-b448-eee830941fc4"
 //!     }
 //!   ],
-//!   &quot;size&quot;: [
+//!   "size": [
 //!     6,
 //!     6
 //!   ],
-//!   &quot;start_time&quot;: &quot;2023-07-31T08:20:51.814026&quot;,
-//!   &quot;strikes&quot;: [],
-//!   &quot;uuid&quot;: &quot;255f3c2b-b5dd-4850-b0e9-bfc6551747b4&quot;
+//!   "start_time": "2023-07-31T08:20:51.814026",
+//!   "strikes": [],
+//!   "uuid": "255f3c2b-b5dd-4850-b0e9-bfc6551747b4"
 //! }
 //! ```
 //!

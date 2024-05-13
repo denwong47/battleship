@@ -1,7 +1,8 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="`tokio` application, including the main `tide` routine to host the game."><title>battleship::app - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="battleship" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../battleship/index.html">battleship</a><span class="version">0.1.1</span></h2></div><h2 class="location"><a href="#">Module app</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#functions">Functions</a></li></ul></section><h2><a href="../index.html">In crate battleship</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../index.html">battleship</a>::<wbr><a class="mod" href="#">app</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../src/battleship/app/mod.rs.html#1-451">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>[<code>tokio</code>] application, including the main [<code>tide</code>] routine to host the game.</p>
-<h3 id="requirements"><a href="#requirements">Requirements</a></h3>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="`tokio` application, including the main `tide` routine to host the game."><title>battleship::app - Rust</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="battleship" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../battleship/index.html">battleship</a><span class="version">0.1.1</span></h2></div><h2 class="location"><a href="#">Module app</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#functions">Functions</a></li></ul></section><h2><a href="../index.html">In crate battleship</a></h2></div></nav><div class="sidebar-resizer"></div>
+    <main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../battleship/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../index.html">battleship</a>::<wbr><a class="mod" href="#">app</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../src/battleship/app/mod.rs.html#1-451">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>[<code>tokio</code>] application, including the main [<code>tide</code>] routine to host the game.</p>
+<h3 id="requirements"><a class="doc-anchor" href="#requirements">§</a>Requirements</h3>
 <p>A <a href="../_doc/hostjson/index.html" title="mod battleship::_doc::hostjson"><code>host.json</code></a> file must be setup in the current working directory from which the app is executed.</p>
-<h3 id="api-documentation"><a href="#api-documentation">API Documentation</a></h3>
+<h3 id="api-documentation"><a class="doc-anchor" href="#api-documentation">§</a>API Documentation</h3>
 <p>The following [<code>tide::Endpoint</code>]s are available:</p>
 <ul>
 <li>Query for the server status
@@ -22,18 +23,18 @@ the board, including hidden ships etc.</li>
 </ul>
 </li>
 </ul>
-<h2 id="error-handling"><a href="#error-handling">Error Handling</a></h2>
+<h2 id="error-handling"><a class="doc-anchor" href="#error-handling">§</a>Error Handling</h2>
 <p>In general, all endpoints can return a JSON object indicating any errors it encountered during the query.
 These object will take the format of:</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>{
-    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;TypeOfError&quot;</span>,
-    <span class="string">&quot;message&quot;</span>: <span class="string">&quot;A message explaining the error.&quot;
+    <span class="string">"error"</span>: <span class="string">"TypeOfError"</span>,
+    <span class="string">"message"</span>: <span class="string">"A message explaining the error."
 </span>}</code></pre></div>
 <p>A non <code>200 OK</code> status will be returned alongside such a message.
 Consult <a href="../error/enum.AppError.html" title="enum battleship::error::AppError"><code>AppError</code></a> for a complete list of possible error types and their
 corresponding status codes.</p>
-<h2 id="info"><a href="#info"><code>/info</code></a></h2>
+<h2 id="info"><a class="doc-anchor" href="#info">§</a><code>/info</code></h2>
 <p><strong>Prints out information about the state of the app.</strong></p>
 <p>This contains:</p>
 <ul>
@@ -43,53 +44,53 @@ corresponding status codes.</p>
 </ul>
 <p>If the executable is built with the <code>debug</code> feature, a full visit log will also
 be included.</p>
-<h5 id="syntax"><a href="#syntax">Syntax</a></h5><div class="example-wrap"><pre class="language-text"><code>/info
-</code></pre></div><h5 id="parameters"><a href="#parameters">Parameters</a></h5>
+<h5 id="syntax"><a class="doc-anchor" href="#syntax">§</a>Syntax</h5><div class="example-wrap"><pre class="language-text"><code>/info
+</code></pre></div><h5 id="parameters"><a class="doc-anchor" href="#parameters">§</a>Parameters</h5>
 <p>This endpoint does not accept parameters.</p>
-<h5 id="example-return"><a href="#example-return">Example return</a></h5>
+<h5 id="example-return"><a class="doc-anchor" href="#example-return">§</a>Example return</h5>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>{
-  <span class="string">&quot;page_visits&quot;</span>: {
-    <span class="string">&quot;/drop/55a8e295-909c-4054-a18f-87ef6002e343&quot;</span>: <span class="number">1</span>,
-    <span class="string">&quot;/info&quot;</span>: <span class="number">2</span>,
-    <span class="string">&quot;/new&quot;</span>: <span class="number">2</span>,
-    <span class="string">&quot;/status/55a8e295-909c-4054-a18f-87ef6002e343&quot;</span>: <span class="number">1</span>,
-    <span class="string">&quot;/status/v&quot;</span>: <span class="number">1</span>,
-    <span class="string">&quot;/strike/55a8e295-909c-4054-a18f-87ef6002e343&quot;</span>: <span class="number">6
+  <span class="string">"page_visits"</span>: {
+    <span class="string">"/drop/55a8e295-909c-4054-a18f-87ef6002e343"</span>: <span class="number">1</span>,
+    <span class="string">"/info"</span>: <span class="number">2</span>,
+    <span class="string">"/new"</span>: <span class="number">2</span>,
+    <span class="string">"/status/55a8e295-909c-4054-a18f-87ef6002e343"</span>: <span class="number">1</span>,
+    <span class="string">"/status/v"</span>: <span class="number">1</span>,
+    <span class="string">"/strike/55a8e295-909c-4054-a18f-87ef6002e343"</span>: <span class="number">6
   </span>},
-  <span class="string">&quot;simulated_failure_factor&quot;</span>: <span class="number">32</span>,
-  <span class="string">&quot;start_time&quot;</span>: <span class="string">&quot;2023-08-01T21:09:31.404040&quot;
+  <span class="string">"simulated_failure_factor"</span>: <span class="number">32</span>,
+  <span class="string">"start_time"</span>: <span class="string">"2023-08-01T21:09:31.404040"
 </span>}</code></pre></div>
-<h2 id="list"><a href="#list"><code>/list</code></a></h2>
+<h2 id="list"><a class="doc-anchor" href="#list">§</a><code>/list</code></h2>
 <p><strong>List all the stored <a href="../models/board_status/struct.BoardStatus.html" title="struct battleship::models::board_status::BoardStatus">board status</a>es on this host.</strong></p>
 <p>An unordered array of <a href="../models/board_status/struct.BoardStatus.html" title="struct battleship::models::board_status::BoardStatus">board status</a>es in the same format as those returned by <a href="#statusuuid">status</a>.</p>
-<h5 id="syntax-1"><a href="#syntax-1">Syntax</a></h5><div class="example-wrap"><pre class="language-text"><code>/list
-</code></pre></div><h5 id="parameters-1"><a href="#parameters-1">Parameters</a></h5>
+<h5 id="syntax-1"><a class="doc-anchor" href="#syntax-1">§</a>Syntax</h5><div class="example-wrap"><pre class="language-text"><code>/list
+</code></pre></div><h5 id="parameters-1"><a class="doc-anchor" href="#parameters-1">§</a>Parameters</h5>
 <p>This endpoint does not accept parameters.</p>
-<h5 id="see-also"><a href="#see-also">See also</a></h5>
+<h5 id="see-also"><a class="doc-anchor" href="#see-also">§</a>See also</h5>
 <ul>
 <li><a href="#statusuuid">status</a> for format of each returned item in the array.</li>
 </ul>
-<h2 id="terminate"><a href="#terminate"><code>/terminate</code></a></h2>
+<h2 id="terminate"><a class="doc-anchor" href="#terminate">§</a><code>/terminate</code></h2>
 <p><strong>Immediately shut down the host gracefully, dropping all boards in the process.</strong></p>
-<h5 id="syntax-2"><a href="#syntax-2">Syntax</a></h5><div class="example-wrap"><pre class="language-text"><code>/terminate
+<h5 id="syntax-2"><a class="doc-anchor" href="#syntax-2">§</a>Syntax</h5><div class="example-wrap"><pre class="language-text"><code>/terminate
 </code></pre></div>
 <p>This is only used for remote termination of the host. It has the same effect as
 pressing <code>Ctrl-C</code> on the terminal running the app.</p>
 <p>While <a href="../models/board/struct.Board.html" title="struct battleship::models::board::Board"><code>Board</code></a> supports <a href="https://docs.rs/serde/1.0.195/serde/ser/trait.Serialize.html" title="trait serde::ser::Serialize"><code>Serialize</code></a> and <a href="https://docs.rs/serde/1.0.195/serde/de/trait.Deserialize.html" title="trait serde::de::Deserialize"><code>Deserialize</code></a>, this is currently not being used by the host,
 thus none of the existing <a href="../models/board/struct.Board.html" title="struct battleship::models::board::Board"><code>Board</code></a>s will be preserved; they will simply be dropped from memory.</p>
-<h5 id="parameters-2"><a href="#parameters-2">Parameters</a></h5>
+<h5 id="parameters-2"><a class="doc-anchor" href="#parameters-2">§</a>Parameters</h5>
 <p>This endpoint does not accept parameters.</p>
-<h5 id="example-return-1"><a href="#example-return-1">Example return</a></h5>
+<h5 id="example-return-1"><a class="doc-anchor" href="#example-return-1">§</a>Example return</h5>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>{
-    <span class="string">&quot;action&quot;</span>: <span class="string">&quot;termination&quot;</span>,
-    <span class="string">&quot;success&quot;</span>: <span class="bool-val">true
+    <span class="string">"action"</span>: <span class="string">"termination"</span>,
+    <span class="string">"success"</span>: <span class="bool-val">true
 </span>}</code></pre></div>
-<h2 id="new"><a href="#new"><code>/new</code></a></h2>
+<h2 id="new"><a class="doc-anchor" href="#new">§</a><code>/new</code></h2>
 <p><strong>Create a new game with the stated parameters.</strong></p>
 <p>Upon successful creation, returns the <a href="../models/board_status/struct.BoardStatus.html" title="struct battleship::models::board_status::BoardStatus">board status</a> of the newly crated board.</p>
 <p>Use the key <code>uuid</code> to get the <a href="../models/board/struct.Board.html" title="struct battleship::models::board::Board"><code>Board</code></a> identifier.</p>
-<h5 id="syntax-3"><a href="#syntax-3">Syntax</a></h5><div class="example-wrap"><pre class="language-text"><code>/new?width=&lt;u64&gt;&amp;height=&lt;u64&gt;&amp;ship_count=&lt;usize&gt;
-</code></pre></div><h5 id="parameters-3"><a href="#parameters-3">Parameters</a></h5>
+<h5 id="syntax-3"><a class="doc-anchor" href="#syntax-3">§</a>Syntax</h5><div class="example-wrap"><pre class="language-text"><code>/new?width=&lt;u64&gt;&amp;height=&lt;u64&gt;&amp;ship_count=&lt;usize&gt;
+</code></pre></div><h5 id="parameters-3"><a class="doc-anchor" href="#parameters-3">§</a>Parameters</h5>
 <ul>
 <li>
 <p><code>width</code>: board width, default <code>10</code>,</p>
@@ -105,48 +106,48 @@ the aimed amount. Each ship creation is tried for <code>32</code> times before g
 The number of ships will never exceed this number.</p>
 </li>
 </ul>
-<h5 id="example-return-2"><a href="#example-return-2">Example return</a></h5>
+<h5 id="example-return-2"><a class="doc-anchor" href="#example-return-2">§</a>Example return</h5>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>{
-  <span class="string">&quot;action&quot;</span>: <span class="string">&quot;createGame&quot;</span>,
-  <span class="string">&quot;game&quot;</span>: {
-    <span class="string">&quot;active&quot;</span>: <span class="bool-val">true</span>,
-    <span class="string">&quot;elapsed&quot;</span>: <span class="number">0.000089</span>,
-    <span class="string">&quot;ship_intel&quot;</span>: [
+  <span class="string">"action"</span>: <span class="string">"createGame"</span>,
+  <span class="string">"game"</span>: {
+    <span class="string">"active"</span>: <span class="bool-val">true</span>,
+    <span class="string">"elapsed"</span>: <span class="number">0.000089</span>,
+    <span class="string">"ship_intel"</span>: [
       {
-        <span class="string">&quot;damages&quot;</span>: <span class="number">0</span>,
-        <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;Battleship&quot;</span>,
-        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;Undiscovered&quot;</span>,
-        <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;593f093a-620b-4bf4-ba31-e8ee5b4d9de5&quot;
+        <span class="string">"damages"</span>: <span class="number">0</span>,
+        <span class="string">"ship_type"</span>: <span class="string">"Battleship"</span>,
+        <span class="string">"status"</span>: <span class="string">"Undiscovered"</span>,
+        <span class="string">"uuid"</span>: <span class="string">"593f093a-620b-4bf4-ba31-e8ee5b4d9de5"
       </span>},
       {
-        <span class="string">&quot;damages&quot;</span>: <span class="number">0</span>,
-        <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;Cruiser&quot;</span>,
-        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;Undiscovered&quot;</span>,
-        <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;01e96180-2910-4f09-930d-f75bafcacf53&quot;
+        <span class="string">"damages"</span>: <span class="number">0</span>,
+        <span class="string">"ship_type"</span>: <span class="string">"Cruiser"</span>,
+        <span class="string">"status"</span>: <span class="string">"Undiscovered"</span>,
+        <span class="string">"uuid"</span>: <span class="string">"01e96180-2910-4f09-930d-f75bafcacf53"
       </span>},
       {
-        <span class="string">&quot;damages&quot;</span>: <span class="number">0</span>,
-        <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;AircraftCarrier&quot;</span>,
-        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;Undiscovered&quot;</span>,
-        <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;919c5d58-aabf-481e-ae7f-3f601816f629&quot;
+        <span class="string">"damages"</span>: <span class="number">0</span>,
+        <span class="string">"ship_type"</span>: <span class="string">"AircraftCarrier"</span>,
+        <span class="string">"status"</span>: <span class="string">"Undiscovered"</span>,
+        <span class="string">"uuid"</span>: <span class="string">"919c5d58-aabf-481e-ae7f-3f601816f629"
       </span>},
       {
-        <span class="string">&quot;damages&quot;</span>: <span class="number">0</span>,
-        <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;Battleship&quot;</span>,
-        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;Undiscovered&quot;</span>,
-        <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;4d22ea2a-5ec3-4117-a8e5-ed6ecae8efcf&quot;
+        <span class="string">"damages"</span>: <span class="number">0</span>,
+        <span class="string">"ship_type"</span>: <span class="string">"Battleship"</span>,
+        <span class="string">"status"</span>: <span class="string">"Undiscovered"</span>,
+        <span class="string">"uuid"</span>: <span class="string">"4d22ea2a-5ec3-4117-a8e5-ed6ecae8efcf"
       </span>}
     ],
-    <span class="string">&quot;size&quot;</span>: [
+    <span class="string">"size"</span>: [
       <span class="number">8</span>,
       <span class="number">6
     </span>],
-    <span class="string">&quot;strikes&quot;</span>: <span class="number">0</span>,
-    <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;9e3bfde9-4248-49fd-8550-3e773c3deca6&quot;
+    <span class="string">"strikes"</span>: <span class="number">0</span>,
+    <span class="string">"uuid"</span>: <span class="string">"9e3bfde9-4248-49fd-8550-3e773c3deca6"
   </span>},
-  <span class="string">&quot;success&quot;</span>: <span class="bool-val">true
+  <span class="string">"success"</span>: <span class="bool-val">true
 </span>}</code></pre></div>
-<h2 id="statusuuid"><a href="#statusuuid"><code>/status/&lt;uuid&gt;</code></a></h2>
+<h2 id="statusuuid"><a class="doc-anchor" href="#statusuuid">§</a><code>/status/&lt;uuid&gt;</code></h2>
 <p><strong>Return the <a href="../models/board_status/struct.BoardStatus.html" title="struct battleship::models::board_status::BoardStatus">board status</a> without giving away any secrets of the game.</strong></p>
 <p>The following keys are returned:</p>
 <ul>
@@ -158,47 +159,47 @@ present, their statuses and damages sustained.</li>
 <li><code>strikes</code> - number of strikes that had occurred.</li>
 <li><code>uuid</code> - the unique identifier of the board.</li>
 </ul>
-<h5 id="parameters-4"><a href="#parameters-4">Parameters</a></h5>
+<h5 id="parameters-4"><a class="doc-anchor" href="#parameters-4">§</a>Parameters</h5>
 <p>This endpoint does not accept parameters.</p>
-<h5 id="syntax-4"><a href="#syntax-4">Syntax</a></h5><div class="example-wrap"><pre class="language-text"><code>/status/&lt;uuid&gt;
-</code></pre></div><h5 id="example-return-3"><a href="#example-return-3">Example return</a></h5>
+<h5 id="syntax-4"><a class="doc-anchor" href="#syntax-4">§</a>Syntax</h5><div class="example-wrap"><pre class="language-text"><code>/status/&lt;uuid&gt;
+</code></pre></div><h5 id="example-return-3"><a class="doc-anchor" href="#example-return-3">§</a>Example return</h5>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>{
-  <span class="string">&quot;active&quot;</span>: <span class="bool-val">true</span>,
-  <span class="string">&quot;elapsed&quot;</span>: <span class="number">991.084999</span>,
-  <span class="string">&quot;ship_intel&quot;</span>: [
+  <span class="string">"active"</span>: <span class="bool-val">true</span>,
+  <span class="string">"elapsed"</span>: <span class="number">991.084999</span>,
+  <span class="string">"ship_intel"</span>: [
     {
-      <span class="string">&quot;damages&quot;</span>: <span class="number">0</span>,
-      <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;Battleship&quot;</span>,
-      <span class="string">&quot;status&quot;</span>: <span class="string">&quot;Undiscovered&quot;</span>,
-      <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;593f093a-620b-4bf4-ba31-e8ee5b4d9de5&quot;
+      <span class="string">"damages"</span>: <span class="number">0</span>,
+      <span class="string">"ship_type"</span>: <span class="string">"Battleship"</span>,
+      <span class="string">"status"</span>: <span class="string">"Undiscovered"</span>,
+      <span class="string">"uuid"</span>: <span class="string">"593f093a-620b-4bf4-ba31-e8ee5b4d9de5"
     </span>},
     {
-      <span class="string">&quot;damages&quot;</span>: <span class="number">0</span>,
-      <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;Cruiser&quot;</span>,
-      <span class="string">&quot;status&quot;</span>: <span class="string">&quot;Undiscovered&quot;</span>,
-      <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;01e96180-2910-4f09-930d-f75bafcacf53&quot;
+      <span class="string">"damages"</span>: <span class="number">0</span>,
+      <span class="string">"ship_type"</span>: <span class="string">"Cruiser"</span>,
+      <span class="string">"status"</span>: <span class="string">"Undiscovered"</span>,
+      <span class="string">"uuid"</span>: <span class="string">"01e96180-2910-4f09-930d-f75bafcacf53"
     </span>},
     {
-      <span class="string">&quot;damages&quot;</span>: <span class="number">0</span>,
-      <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;AircraftCarrier&quot;</span>,
-      <span class="string">&quot;status&quot;</span>: <span class="string">&quot;Undiscovered&quot;</span>,
-      <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;919c5d58-aabf-481e-ae7f-3f601816f629&quot;
+      <span class="string">"damages"</span>: <span class="number">0</span>,
+      <span class="string">"ship_type"</span>: <span class="string">"AircraftCarrier"</span>,
+      <span class="string">"status"</span>: <span class="string">"Undiscovered"</span>,
+      <span class="string">"uuid"</span>: <span class="string">"919c5d58-aabf-481e-ae7f-3f601816f629"
     </span>},
     {
-      <span class="string">&quot;damages&quot;</span>: <span class="number">0</span>,
-      <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;Battleship&quot;</span>,
-      <span class="string">&quot;status&quot;</span>: <span class="string">&quot;Undiscovered&quot;</span>,
-      <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;4d22ea2a-5ec3-4117-a8e5-ed6ecae8efcf&quot;
+      <span class="string">"damages"</span>: <span class="number">0</span>,
+      <span class="string">"ship_type"</span>: <span class="string">"Battleship"</span>,
+      <span class="string">"status"</span>: <span class="string">"Undiscovered"</span>,
+      <span class="string">"uuid"</span>: <span class="string">"4d22ea2a-5ec3-4117-a8e5-ed6ecae8efcf"
     </span>}
   ],
-  <span class="string">&quot;size&quot;</span>: [
+  <span class="string">"size"</span>: [
     <span class="number">8</span>,
     <span class="number">6
   </span>],
-  <span class="string">&quot;strikes&quot;</span>: <span class="number">0</span>,
-  <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;9e3bfde9-4248-49fd-8550-3e773c3deca6&quot;
+  <span class="string">"strikes"</span>: <span class="number">0</span>,
+  <span class="string">"uuid"</span>: <span class="string">"9e3bfde9-4248-49fd-8550-3e773c3deca6"
 </span>}</code></pre></div>
-<h2 id="list_strikesuuid"><a href="#list_strikesuuid"><code>/list_strikes/&lt;uuid&gt;</code></a></h2>
+<h2 id="list_strikesuuid"><a class="doc-anchor" href="#list_strikesuuid">§</a><code>/list_strikes/&lt;uuid&gt;</code></h2>
 <p><strong>List all the strikes that had occurred on this board so far.</strong></p>
 <p>This is not an accurate “replay” of all the <a href="../models/strike/struct.Strike.html" title="struct battleship::models::strike::Strike"><code>Strike</code></a>s. It differs by two ways:</p>
 <ul>
@@ -209,120 +210,120 @@ present, their statuses and damages sustained.</li>
 <p>A typical use of this [<code>Endpoint</code>] is for a client to render the state of a
 <a href="../models/board/struct.Board.html" title="struct battleship::models::board::Board"><code>Board</code></a> without any prior knowledge of what happened. In such a scenario, tracing
 the history and progress of the board accurately is not required.</p>
-<h5 id="parameters-5"><a href="#parameters-5">Parameters</a></h5>
+<h5 id="parameters-5"><a class="doc-anchor" href="#parameters-5">§</a>Parameters</h5>
 <p>This endpoint does not accept parameters.</p>
-<h5 id="syntax-5"><a href="#syntax-5">Syntax</a></h5><div class="example-wrap"><pre class="language-text"><code>/list_strikes/&lt;uuid&gt;
-</code></pre></div><h2 id="strikeuuid"><a href="#strikeuuid"><code>/strike/&lt;uuid&gt;</code></a></h2><h5 id="syntax-6"><a href="#syntax-6">Syntax</a></h5><div class="example-wrap"><pre class="language-text"><code>/strike/&lt;uuid&gt;?x=&lt;u64&gt;&amp;y=&lt;u64&gt;
+<h5 id="syntax-5"><a class="doc-anchor" href="#syntax-5">§</a>Syntax</h5><div class="example-wrap"><pre class="language-text"><code>/list_strikes/&lt;uuid&gt;
+</code></pre></div><h2 id="strikeuuid"><a class="doc-anchor" href="#strikeuuid">§</a><code>/strike/&lt;uuid&gt;</code></h2><h5 id="syntax-6"><a class="doc-anchor" href="#syntax-6">§</a>Syntax</h5><div class="example-wrap"><pre class="language-text"><code>/strike/&lt;uuid&gt;?x=&lt;u64&gt;&amp;y=&lt;u64&gt;
 </code></pre></div>
 <p><strong>Perform a strike on the specified coordinates.</strong></p>
-<h5 id="example-return-4"><a href="#example-return-4">Example return</a></h5>
+<h5 id="example-return-4"><a class="doc-anchor" href="#example-return-4">§</a>Example return</h5>
 <ul>
 <li>
 <p>Missed:</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>{
-  <span class="string">&quot;coordinates&quot;</span>: {
-    <span class="string">&quot;x&quot;</span>: <span class="number">12</span>,
-    <span class="string">&quot;y&quot;</span>: <span class="number">4
+  <span class="string">"coordinates"</span>: {
+    <span class="string">"x"</span>: <span class="number">12</span>,
+    <span class="string">"y"</span>: <span class="number">4
   </span>},
-  <span class="string">&quot;hit&quot;</span>: <span class="bool-val">false</span>,
-  <span class="string">&quot;intel&quot;</span>: null,
-  <span class="string">&quot;ships_remaining&quot;</span>: <span class="number">7</span>,
-  <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;281834dc-a688-45a2-ba72-311a757cc0ca&quot;
+  <span class="string">"hit"</span>: <span class="bool-val">false</span>,
+  <span class="string">"intel"</span>: null,
+  <span class="string">"ships_remaining"</span>: <span class="number">7</span>,
+  <span class="string">"uuid"</span>: <span class="string">"281834dc-a688-45a2-ba72-311a757cc0ca"
 </span>}</code></pre></div>
 </li>
 <li>
 <p>Hit:</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>{
-  <span class="string">&quot;coordinates&quot;</span>: {
-    <span class="string">&quot;x&quot;</span>: <span class="number">7</span>,
-    <span class="string">&quot;y&quot;</span>: <span class="number">9
+  <span class="string">"coordinates"</span>: {
+    <span class="string">"x"</span>: <span class="number">7</span>,
+    <span class="string">"y"</span>: <span class="number">9
   </span>},
-  <span class="string">&quot;hit&quot;</span>: <span class="bool-val">true</span>,
-  <span class="string">&quot;intel&quot;</span>: {
-    <span class="string">&quot;damages&quot;</span>: <span class="number">1</span>,
-    <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;Battleship&quot;</span>,
-    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;Discovered&quot;</span>,
-    <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;91efacf4-f97d-4478-b1aa-a7df6d2534f7&quot;
+  <span class="string">"hit"</span>: <span class="bool-val">true</span>,
+  <span class="string">"intel"</span>: {
+    <span class="string">"damages"</span>: <span class="number">1</span>,
+    <span class="string">"ship_type"</span>: <span class="string">"Battleship"</span>,
+    <span class="string">"status"</span>: <span class="string">"Discovered"</span>,
+    <span class="string">"uuid"</span>: <span class="string">"91efacf4-f97d-4478-b1aa-a7df6d2534f7"
   </span>},
-  <span class="string">&quot;ships_remaining&quot;</span>: <span class="number">7</span>,
-  <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;af7d69e9-1809-4d1e-97aa-d76ce3fa303e&quot;
+  <span class="string">"ships_remaining"</span>: <span class="number">7</span>,
+  <span class="string">"uuid"</span>: <span class="string">"af7d69e9-1809-4d1e-97aa-d76ce3fa303e"
 </span>}</code></pre></div>
 </li>
 <li>
 <p>Coordinates out of bounds:</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>{
-  <span class="string">&quot;error&quot;</span>: <span class="string">&quot;CoordinatesOutOfBounds&quot;</span>,
-  <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Coordinates (7, 16) is out of bounds.&quot;
+  <span class="string">"error"</span>: <span class="string">"CoordinatesOutOfBounds"</span>,
+  <span class="string">"message"</span>: <span class="string">"Coordinates (7, 16) is out of bounds."
 </span>}</code></pre></div>
 </li>
 </ul>
-<h2 id="dropuuid"><a href="#dropuuid"><code>/drop/&lt;uuid&gt;</code></a></h2><h5 id="syntax-7"><a href="#syntax-7">Syntax</a></h5><div class="example-wrap"><pre class="language-text"><code>/drop/&lt;uuid&gt;
+<h2 id="dropuuid"><a class="doc-anchor" href="#dropuuid">§</a><code>/drop/&lt;uuid&gt;</code></h2><h5 id="syntax-7"><a class="doc-anchor" href="#syntax-7">§</a>Syntax</h5><div class="example-wrap"><pre class="language-text"><code>/drop/&lt;uuid&gt;
 </code></pre></div>
 <p><strong>Finish a game, and return the current unobscured state of the board.</strong></p>
 <p>This will remove the game from the server permanently.</p>
-<h5 id="example-return-5"><a href="#example-return-5">Example return</a></h5>
+<h5 id="example-return-5"><a class="doc-anchor" href="#example-return-5">§</a>Example return</h5>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>{
-  <span class="string">&quot;frozen&quot;</span>: <span class="bool-val">false</span>,
-  <span class="string">&quot;position_index&quot;</span>: {
+  <span class="string">"frozen"</span>: <span class="bool-val">false</span>,
+  <span class="string">"position_index"</span>: {
     ...
   },
-  <span class="string">&quot;ships&quot;</span>: [
+  <span class="string">"ships"</span>: [
     {
-      <span class="string">&quot;coordinates&quot;</span>: {
-        <span class="string">&quot;x&quot;</span>: <span class="number">1</span>,
-        <span class="string">&quot;y&quot;</span>: <span class="number">2
+      <span class="string">"coordinates"</span>: {
+        <span class="string">"x"</span>: <span class="number">1</span>,
+        <span class="string">"y"</span>: <span class="number">2
       </span>},
-      <span class="string">&quot;orientation&quot;</span>: <span class="string">&quot;Down&quot;</span>,
-      <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;Cruiser&quot;</span>,
-      <span class="string">&quot;strikes&quot;</span>: [
+      <span class="string">"orientation"</span>: <span class="string">"Down"</span>,
+      <span class="string">"ship_type"</span>: <span class="string">"Cruiser"</span>,
+      <span class="string">"strikes"</span>: [
         null,
         null,
         null
       ],
-      <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;c79d876c-2778-4aca-ac6d-f643b14e2b14&quot;
+      <span class="string">"uuid"</span>: <span class="string">"c79d876c-2778-4aca-ac6d-f643b14e2b14"
     </span>},
     {
-      <span class="string">&quot;coordinates&quot;</span>: {
-        <span class="string">&quot;x&quot;</span>: <span class="number">0</span>,
-        <span class="string">&quot;y&quot;</span>: <span class="number">1
+      <span class="string">"coordinates"</span>: {
+        <span class="string">"x"</span>: <span class="number">0</span>,
+        <span class="string">"y"</span>: <span class="number">1
       </span>},
-      <span class="string">&quot;orientation&quot;</span>: <span class="string">&quot;Right&quot;</span>,
-      <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;Submarine&quot;</span>,
-      <span class="string">&quot;strikes&quot;</span>: [
+      <span class="string">"orientation"</span>: <span class="string">"Right"</span>,
+      <span class="string">"ship_type"</span>: <span class="string">"Submarine"</span>,
+      <span class="string">"strikes"</span>: [
         null,
         null,
         null
       ],
-      <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;150024d8-53c3-4b58-9e13-d11380b47885&quot;
+      <span class="string">"uuid"</span>: <span class="string">"150024d8-53c3-4b58-9e13-d11380b47885"
     </span>},
     {
-      <span class="string">&quot;coordinates&quot;</span>: {
-        <span class="string">&quot;x&quot;</span>: <span class="number">2</span>,
-        <span class="string">&quot;y&quot;</span>: <span class="number">2
+      <span class="string">"coordinates"</span>: {
+        <span class="string">"x"</span>: <span class="number">2</span>,
+        <span class="string">"y"</span>: <span class="number">2
       </span>},
-      <span class="string">&quot;orientation&quot;</span>: <span class="string">&quot;Down&quot;</span>,
-      <span class="string">&quot;ship_type&quot;</span>: <span class="string">&quot;Cruiser&quot;</span>,
-      <span class="string">&quot;strikes&quot;</span>: [
+      <span class="string">"orientation"</span>: <span class="string">"Down"</span>,
+      <span class="string">"ship_type"</span>: <span class="string">"Cruiser"</span>,
+      <span class="string">"strikes"</span>: [
         null,
         null,
         null
       ],
-      <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;f34f6cd3-e9f7-4b4a-b448-eee830941fc4&quot;
+      <span class="string">"uuid"</span>: <span class="string">"f34f6cd3-e9f7-4b4a-b448-eee830941fc4"
     </span>}
   ],
-  <span class="string">&quot;size&quot;</span>: [
+  <span class="string">"size"</span>: [
     <span class="number">6</span>,
     <span class="number">6
   </span>],
-  <span class="string">&quot;start_time&quot;</span>: <span class="string">&quot;2023-07-31T08:20:51.814026&quot;</span>,
-  <span class="string">&quot;strikes&quot;</span>: [],
-  <span class="string">&quot;uuid&quot;</span>: <span class="string">&quot;255f3c2b-b5dd-4850-b0e9-bfc6551747b4&quot;
+  <span class="string">"start_time"</span>: <span class="string">"2023-07-31T08:20:51.814026"</span>,
+  <span class="string">"strikes"</span>: [],
+  <span class="string">"uuid"</span>: <span class="string">"255f3c2b-b5dd-4850-b0e9-bfc6551747b4"
 </span>}</code></pre></div>
-</div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="app_hook/index.html" title="mod battleship::app::app_hook">app_hook</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">A wrapper for [<code>tide::Endpoint</code>] which in itself is a [<code>tide::Endpoint</code>].</div></li><li><div class="item-name"><a class="mod" href="app_state/index.html" title="mod battleship::app::app_state">app_state</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">Stores the state of the app.</div></li><li><div class="item-name"><a class="mod" href="base/index.html" title="mod battleship::app::base">base</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">The main function which starts the app using the given <a href="../config/host_config/struct.HostConfiguration.html" title="struct battleship::config::host_config::HostConfiguration"><code>HostConfiguration</code></a>.</div></li><li><div class="item-name"><a class="mod" href="hooks/index.html" title="mod battleship::app::hooks">hooks</a></div><div class="desc docblock-short">Hooks to be added to the tide App.</div></li><li><div class="item-name"><a class="mod" href="page_visit/index.html" title="mod battleship::app::page_visit">page_visit</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">A struct to log each visit to an endpoint of this app.</div></li><li><div class="item-name"><a class="mod" href="tasks/index.html" title="mod battleship::app::tasks">tasks</a></div><div class="desc docblock-short">Tasks creating Async futures</div></li></ul><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.AppHook.html" title="struct battleship::app::AppHook">AppHook</a></div><div class="desc docblock-short">An <a href="app_hook/struct.AppHook.html" title="struct battleship::app::app_hook::AppHook"><code>AppHook</code></a> that wraps a [<code>tide::Endpoint</code>], allowing something to be done to an
+</div></details><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="app_hook/index.html" title="mod battleship::app::app_hook">app_hook</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">A wrapper for [<code>tide::Endpoint</code>] which in itself is a [<code>tide::Endpoint</code>].</div></li><li><div class="item-name"><a class="mod" href="app_state/index.html" title="mod battleship::app::app_state">app_state</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">Stores the state of the app.</div></li><li><div class="item-name"><a class="mod" href="base/index.html" title="mod battleship::app::base">base</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">The main function which starts the app using the given <a href="../config/host_config/struct.HostConfiguration.html" title="struct battleship::config::host_config::HostConfiguration"><code>HostConfiguration</code></a>.</div></li><li><div class="item-name"><a class="mod" href="hooks/index.html" title="mod battleship::app::hooks">hooks</a></div><div class="desc docblock-short">Hooks to be added to the tide App.</div></li><li><div class="item-name"><a class="mod" href="page_visit/index.html" title="mod battleship::app::page_visit">page_visit</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">A struct to log each visit to an endpoint of this app.</div></li><li><div class="item-name"><a class="mod" href="tasks/index.html" title="mod battleship::app::tasks">tasks</a></div><div class="desc docblock-short">Tasks creating Async futures</div></li></ul><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.AppHook.html" title="struct battleship::app::AppHook">AppHook</a></div><div class="desc docblock-short">An <a href="app_hook/struct.AppHook.html" title="struct battleship::app::app_hook::AppHook"><code>AppHook</code></a> that wraps a [<code>tide::Endpoint</code>], allowing something to be done to an
 <a href="app_state/struct.AppState.html" title="struct battleship::app::app_state::AppState"><code>AppState</code></a> before each [<code>tide::Endpoint::call()</code>].</div></li><li><div class="item-name"><a class="struct" href="struct.AppState.html" title="struct battleship::app::AppState">AppState</a></div><div class="desc docblock-short">Records the current state of the app, to be passed during instantiation of
 <a href="../models/traits/is_app_hook/trait.IsAppHook.html" title="trait battleship::models::traits::is_app_hook::IsAppHook"><code>IsAppHook</code></a>.</div></li><li><div class="item-name"><a class="struct" href="struct.PageVisit.html" title="struct battleship::app::PageVisit">PageVisit</a></div><div class="desc docblock-short">A <a href="page_visit/struct.PageVisit.html" title="struct battleship::app::page_visit::PageVisit"><code>PageVisit</code></a> struct capturing information about a single visit to an
 endpoint, such as the remote client, timestamp, endpoint path, url, the
-returned status code and any errors generated.</div></li></ul><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.run_app.html" title="fn battleship::app::run_app">run_app</a></div><div class="desc docblock-short">Starts the host app.</div></li></ul></section></div></main></body></html>
+returned status code and any errors generated.</div></li></ul><h2 id="functions" class="section-header">Functions<a href="#functions" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.run_app.html" title="fn battleship::app::run_app">run_app</a></div><div class="desc docblock-short">Starts the host app.</div></li></ul></section></div></main></body></html>
