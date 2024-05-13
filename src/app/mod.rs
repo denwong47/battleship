@@ -50,7 +50,7 @@
 //! A non `200 OK` status will be returned alongside such a message.
 //! Consult [`AppError`] for a complete list of possible error types and their
 //! corresponding status codes.
-//! 
+//!
 
 //! # `/info`
 //!
@@ -140,9 +140,9 @@
 //! # `/new`
 //!
 //! **Create a new game with the stated parameters.**
-//! 
+//!
 //! Upon successful creation, returns the [board status] of the newly crated board.
-//! 
+//!
 //! Use the key `uuid` to get the [`Board`] identifier.
 //!
 //! #### Syntax
@@ -155,7 +155,7 @@
 //! - `width`: board width, default `10`,
 //! - `height`: board height, default `10`, and
 //! - `ship_count`: number of ships to aim to create.
-//!   
+//!
 //!   There is no guarantee that
 //!   this amount of ships will be present in the resultant board - this was simply
 //!   the aimed amount. Each ship creation is tried for `32` times before giving up.
@@ -210,9 +210,9 @@
 //! # `/status/<uuid>`
 //!
 //! **Return the [board status] without giving away any secrets of the game.**
-//! 
+//!
 //! The following keys are returned:
-//! 
+//!
 //! - `active` - `false` if the game is finished; otherwise `true`.
 //! - `elapsed` - seconds since the game has started.
 //! - `ship_intel` - an array of [ship intelligence] objects indicating what ships are
@@ -220,11 +220,11 @@
 //! - `size` - an array of size `2` indicating the board size: `[width: usize, height: usize]`
 //! - `strikes` - number of strikes that had occurred.
 //! - `uuid` - the unique identifier of the board.
-//! 
+//!
 //! #### Parameters
 //!
 //! This endpoint does not accept parameters.
-//! 
+//!
 //! #### Syntax
 //!
 //! ```text
