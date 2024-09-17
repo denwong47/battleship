@@ -8,8 +8,6 @@ use crate::config;
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
 #[command(author, version, about)]
-#[command(version)]
-#[command(about)]
 #[command(long_about = None)]
 pub struct CommandLineParameters {
     /// Binds the host to a custom hosting address.
